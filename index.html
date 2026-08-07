@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>炊烟袅袅 MOD 百科 | 饥荒</title>
     <meta name="description" content="炊烟袅袅 — 一款为《饥荒》打造的温馨田园美食MOD。炊烟升起，归家有饭。">
-    <link rel="stylesheet" href="style.css?v=20260807_5">
+    <link rel="stylesheet" href="style.css?v=20260807_6">
 </head>
 <body>
 
@@ -615,6 +615,20 @@
     <!-- 返回顶部按钮 -->
     <button class="back-to-top" id="backToTop" onclick="scrollToTop()">↑</button>
 
+    <!-- ==================== 访客计数器 ==================== -->
+    <div class="visitor-counter" id="visitorCounter" title="网站访问统计">
+        <div class="visitor-counter-row">
+            <span class="visitor-counter-icon">🧭</span>
+            <span class="visitor-counter-label">不重复访客</span>
+            <span class="visitor-counter-number" id="uniqueCount">···</span>
+        </div>
+        <div class="visitor-counter-row">
+            <span class="visitor-counter-icon">👣</span>
+            <span class="visitor-counter-label">总浏览次数</span>
+            <span class="visitor-counter-number" id="totalCount">···</span>
+        </div>
+    </div>
+
     <!-- ==================== 浮动书本标签（版权与声明） ==================== -->
     <button class="book-float" id="bookFloat" onclick="openBookModal()" title="版权与声明">
         <span class="book-float-icon">📖</span>
@@ -753,6 +767,49 @@
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') closeBookModal();
         });
+
+        // ===== 访客计数器 =====
+        (function() {
+            var uniqueEl = document.getElementById('uniqueCount');
+            var totalEl  = document.getElementById('totalCount');
+            if (!uniqueEl || !totalEl) return;
+
+            var VISITED_KEY = 'niaoniaowiki_visited_v1';
+            var hasVisited = false;
+            try { hasVisited = !!localStorage.getItem(VISITED_KEY); } catch(e) {}
+
+            var API = 'https://api.counterapi.dev/v1/niaoniaowiki';
+
+            function fmt(n) { return (n || 0).toLocaleString('zh-CN'); }
+
+            // 总浏览次数 —— 每次打开页面都 +1
+            fetch(API + '/views/up')
+                .then(function(r){ return r.json(); })
+                .then(function(d){
+                    if (d && typeof d.count === 'number') totalEl.textContent = fmt(d.count);
+                })
+                .catch(function(){ totalEl.textContent = '—'; });
+
+            // 不重复访客 —— 仅首次访问 +1
+            if (!hasVisited) {
+                fetch(API + '/unique/up')
+                    .then(function(r){ return r.json(); })
+                    .then(function(d){
+                        if (d && typeof d.count === 'number') {
+                            uniqueEl.textContent = fmt(d.count);
+                            try { localStorage.setItem(VISITED_KEY, '1'); } catch(e) {}
+                        }
+                    })
+                    .catch(function(){ uniqueEl.textContent = '—'; });
+            } else {
+                fetch(API + '/unique/')
+                    .then(function(r){ return r.json(); })
+                    .then(function(d){
+                        if (d && typeof d.count === 'number') uniqueEl.textContent = fmt(d.count);
+                    })
+                    .catch(function(){ uniqueEl.textContent = '—'; });
+            }
+        })();
     </script>
     <script src="search.js?v=20260807"></script>
     <script src="effects.js?v=20260807_4"></script>
