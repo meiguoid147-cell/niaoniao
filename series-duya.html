@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>渡鸦商店系列 | 炊烟袅袅 MOD 百科</title>
+    <link rel="stylesheet" href="style.css?v=20260807_4">
+</head>
+<body>
+
+    <!-- ==================== 搜索栏 ==================== -->
+    <div class="search-bar-wrapper" id="searchBarWrapper">
+        <div class="search-bar">
+            <div class="search-input-wrapper">
+                <span class="search-icon">🔍</span>
+                <input type="text" class="search-input" id="searchInput" placeholder="搜索全站内容…（如：渡鸦、桃园、料理、建筑）" autocomplete="off">
+                <button class="search-clear" id="searchClear" onclick="clearSearch()">✕</button>
+            </div>
+            <div class="search-results" id="searchResults"></div>
+        </div>
+    </div>
+
+    <!-- ==================== 系列页面导航栏 ==================== -->
+    <nav class="series-nav">
+        <div class="container">
+            <div class="series-nav-left">
+                <a href="index.html" class="series-nav-back">← 返回首页</a>
+                <span class="series-nav-title"><img src="assets/duya_shop_icon.png" alt="渡鸦" style="width:24px;height:24px;border-radius:50%;object-fit:cover;vertical-align:middle;margin-right:6px;">渡鸦商店系列</span>
+            </div>
+            <ul class="series-nav-links">
+                <li><a href="series-duya.html" class="current">渡鸦商店</a></li>
+                <li><a href="series-gufeng.html">古风景观</a></li>
+                <li><a href="series-taoyuan.html">桃园系列</a></li>
+                <li><a href="series-shishang.html">时尚家居</a></li>
+                <li><a href="series-xianshan.html">仙山小农</a></li>
+                <li><a href="series-niaoniao.html">袅袅原创</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- ==================== 系列详情区 ==================== -->
+    <section class="section series-detail" id="series-duya" style="padding-top:40px;">
+        <div class="container">
+            <div class="series-header">
+                <div class="series-icon-big"><img src="assets/duya_shop_icon.png" alt="渡鸦商店"></div>
+                <div>
+                    <h1 class="section-title" style="text-align:left;margin-bottom:8px;">渡鸦商店系列</h1>
+                    <p class="section-subtitle" style="text-align:left;margin-bottom:0;">神秘渡鸦开设的奇珍商店 · 跨界稀有好物</p>
+                </div>
+            </div>
+
+            <!-- 渡鸦商店大图 -->
+            <div class="shop-hero" id="shop-hero">
+                <img src="assets/duya_shop.png" alt="渡鸦商店界面" class="shop-hero-image">
+                <p class="shop-hero-caption">— 渡鸦商店界面 · 点击图中 8 个分类跳转下方对应介绍 —</p>
+            </div>
+
+            <!-- 9个分类导航 -->
+            <div class="cat-nav">
+                <h2 class="cat-nav-title">渡鸦商店 · 九大栏目</h2>
+                <div class="cat-nav-grid">
+                    <a href="#cat-intro" class="cat-nav-item">
+                        <span class="cat-nav-icon"><img src="assets/duya_shop_icon.png" alt="渡鸦商店" style="width:48px;height:48px;border-radius:50%;object-fit:cover;"></span>
+                        <span class="cat-nav-name">商店介绍</span>
+                        <span class="cat-nav-desc">连接精灵世界的奇珍商店</span>
+                    </a>
+                    <a href="#cat-seeds" class="cat-nav-item">
+                        <span class="cat-nav-icon">🌱</span>
+                        <span class="cat-nav-name">异界种子</span>
+                        <span class="cat-nav-desc">来自异世界的珍稀植株</span>
+                    </a>
+                    <a href="#cat-potted" class="cat-nav-item">
+                        <span class="cat-nav-icon">🪴</span>
+                        <span class="cat-nav-name">花草盆栽</span>
+                        <span class="cat-nav-desc">建家摆件 · 庭院装饰</span>
+                    </a>
+                    <a href="#cat-materials" class="cat-nav-item">
+                        <span class="cat-nav-icon">📦</span>
+                        <span class="cat-nav-name">材料杂货</span>
+                        <span class="cat-nav-desc">炼金 · 装备 · 料理原料</span>
+                    </a>
+                    <a href="#cat-equip" class="cat-nav-item">
+                        <span class="cat-nav-icon">⚔️</span>
+                        <span class="cat-nav-name">冒险装备</span>
+                        <span class="cat-nav-desc">战斗与探索实用装备</span>
+                    </a>
+                    <a href="#cat-dolls" class="cat-nav-item">
+                        <span class="cat-nav-icon">🧸</span>
+                        <span class="cat-nav-name">玩偶之家</span>
+                        <span class="cat-nav-desc">袅袅相关玩偶摆件</span>
+                    </a>
+                    <a href="#cat-merch" class="cat-nav-item">
+                        <span class="cat-nav-icon">🎁</span>
+                        <span class="cat-nav-name">袅袅周边</span>
+                        <span class="cat-nav-desc">角色主题纪念品</span>
+                    </a>
+                    <a href="#cat-food" class="cat-nav-item">
+                        <span class="cat-nav-icon">🍜</span>
+                        <span class="cat-nav-name">鲜香美食</span>
+                        <span class="cat-nav-desc">各地特色料理</span>
+                    </a>
+                    <a href="#cat-floor" class="cat-nav-item">
+                        <span class="cat-nav-icon">🟫</span>
+                        <span class="cat-nav-name">宜家地板</span>
+                        <span class="cat-nav-desc">多种风格地板材质</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 栏目1：商店介绍 -->
+            <div class="cat-section" id="cat-intro">
+                <div class="cat-section-header">
+                    <span class="cat-section-icon"><img src="assets/duya_shop_icon.png" alt="渡鸦商店" style="width:40px;height:40px;border-radius:50%;object-fit:cover;vertical-align:middle;"></span>
+                    <h3 class="cat-section-title">连接精灵世界的商店</h3>
+                    <span class="cat-section-meta">栏目 1 / 9</span>
+                </div>
+
+                <!-- 商店模型介绍卡片 -->
+                <div class="item-card" style="max-width:600px;">
+                    <div class="item-icon">
+                        <img src="assets/duya_shop_icon.png" alt="渡鸦商店图标" style="width:128px;height:128px;border-radius:14px;object-fit:cover;background:#2C2416;">
+                    </div>
+                    <div class="item-info">
+                        <h4 class="item-name">渡鸦商店模型</h4>
+                        <p class="item-price">制作方式：<strong>10 小袅币</strong></p>
+                        <p class="item-detail">
+                            <strong>注意：</strong>制作后商店模型会出现在背包，需要摆放在地上。<br>
+                            <strong>玩法：</strong>鼠标左键进入商店页面。
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 存取款机制 -->
+                <div style="margin-top:28px;padding:20px 24px;background:rgba(255,235,200,0.05);border:1px solid rgba(183,50,57,0.2);border-radius:14px;">
+                    <h4 style="color:var(--color-primary);font-size:1.05rem;margin-bottom:16px;">💰 小袅币存取机制</h4>
+
+                    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;">
+                        <div style="background:rgba(201,169,97,0.12);padding:14px 16px;border-radius:10px;border-left:3px solid var(--color-yellow);">
+                            <strong style="color:var(--color-text);">📥 存款</strong>
+                            <p style="margin-top:8px;font-size:0.88rem;line-height:1.7;color:var(--color-text);">
+                                将小袅币存入商店<br>
+                                <span style="color:var(--color-primary);font-weight:600;">⚠️ 非常重要！所有道具购买需提前存款</span>
+                            </p>
+                        </div>
+                        <div style="background:rgba(201,169,97,0.12);padding:14px 16px;border-radius:10px;border-left:3px solid var(--color-yellow);">
+                            <strong style="color:var(--color-text);">📤 取款</strong>
+                            <p style="margin-top:8px;font-size:0.88rem;line-height:1.7;color:var(--color-text);">
+                                整数取钱 · 取出扣除商店余额<br>
+                                返还至背包实体小袅币
+                            </p>
+                        </div>
+                    </div>
+
+                    <h4 style="color:var(--color-primary);font-size:1.05rem;margin:20px 0 12px;">🏦 小袅币余额模式</h4>
+                    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+                        <div style="background:rgba(44,36,22,0.05);padding:14px 16px;border-radius:10px;border-left:3px solid #8B7355;">
+                            <strong style="color:var(--color-text);">📍 本地模式</strong>
+                            <p style="margin-top:8px;font-size:0.88rem;line-height:1.7;color:var(--color-text);">
+                                此模式下的小袅币余额<br>
+                                只能在<strong>当前存档</strong>【使用】
+                            </p>
+                        </div>
+                        <div style="background:rgba(44,36,22,0.05);padding:14px 16px;border-radius:10px;border-left:3px solid #8B7355;">
+                            <strong style="color:var(--color-text);">🌍 跨界模式</strong>
+                            <p style="margin-top:8px;font-size:0.88rem;line-height:1.7;color:var(--color-text);">
+                                此模式存入的小袅币<br>
+                                可以在<strong>任意存档</strong>【取出】
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 道具收购 -->
+                <div style="margin-top:20px;padding:18px 22px;background:rgba(183,50,57,0.06);border-radius:14px;border:1px solid rgba(183,50,57,0.15);">
+                    <h4 style="color:var(--color-primary);font-size:1.05rem;margin-bottom:10px;">🛒 商店收购道具</h4>
+                    <p style="font-size:0.9rem;line-height:1.8;color:var(--color-text);">
+                        售出道具获得小袅币<br>
+                        <strong style="color:var(--color-primary);">注意：</strong>新的一天开始，刷新收购物品
+                    </p>
+                </div>
+            </div>
+
+            <!-- 栏目2：异界种子（详细） -->
+            <div class="cat-section" id="cat-seeds">
+                <div class="cat-section-header">
+                    <span class="cat-section-icon">🌱</span>
+                    <h3 class="cat-section-title">异界种子</h3>
+                    <span class="cat-section-meta">栏目 2 / 9</span>
+                </div>
+                <p style="color:var(--color-text);font-size:0.92rem;line-height:1.8;margin-bottom:20px;padding:14px 18px;background:rgba(255,235,200,0.04);border-left:3px solid var(--color-primary);border-radius:8px;">
+                    <strong>设定：</strong>由于种子来自异世界，水土不服，部分材料采收时 50% 获取。
+                </p>
+                <div class="item-grid">
+
+                    <!-- 精灵粉尘 -->
+                    <div class="item-card">
+                        <div class="item-icon">
+                            <img src="assets/fairy_dust.png" alt="精灵粉尘">
+                        </div>
+                        <div class="item-info">
+                            <h4 class="item-name">精灵粉尘</h4>
+                            <p class="item-price">1 小袅币 / 个</p>
+                            <p class="item-detail">精灵魔法催动材料。各类材料小袅币售价较高，适合急需时购买。</p>
+                        </div>
+                    </div>
+
+                    <!-- 玫瑰种子 -->
+                    <div class="item-card">
+                        <div class="item-icon">
+                            <img src="assets/niao_rose_seed.png" alt="玫瑰种子">
+                        </div>
+                        <div class="item-info">
+                            <h4 class="item-name">玫瑰种子</h4>
+                            <p class="item-price">1 小袅币 / 个</p>
+                            <p class="item-detail">
+                                生长分为 <strong>4 个阶段</strong>：<br>
+                                <strong>种子 → 发芽：</strong>需要施肥精灵粉尘<br>
+                                <strong>发芽 → 成长：</strong>3 天 / 蝶灵权杖催熟<br>
+                                <strong>成长 → 成熟：</strong>3 天 / 蝶灵权杖催熟<br>
+                                <strong>采摘获得：</strong>100% 玫瑰花瓣 5 个 + 50% 玫瑰宝石 1 个<br>
+                                花瓣会腐烂，铲除植物消失，采摘后回到成长期。
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- 短竹芽 -->
+                    <div class="item-card">
+                        <div class="item-icon">
+                            <img src="assets/short_bud_bamboo.png" alt="短竹芽">
+                        </div>
+                        <div class="item-info">
+                            <h4 class="item-name">短竹芽</h4>
+                            <p class="item-price">1 小袅币 / 个</p>
+                            <p class="item-detail">
+                                生长分为 <strong>4 个阶段</strong>（施肥 + 蝶灵权杖催熟）。<br>
+                                <strong>采摘获得：</strong>100% 竹叶 5 个 + 100% 树枝 1 个<br>
+                                竹叶会腐烂。
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- 七彩铃兰 -->
+                    <div class="item-card">
+                        <div class="item-icon">
+                            <img src="assets/colorful_lily_of_the_valley_flower.png" alt="七彩铃兰">
+                        </div>
+                        <div class="item-info">
+                            <h4 class="item-name">七彩铃兰</h4>
+                            <p class="item-price">1 小袅币 / 个</p>
+                            <p class="item-detail">
+                                生长分为 <strong>4 个阶段</strong>（施肥 + 蝶灵权杖催熟）。<br>
+                                <strong>采摘获得：</strong>100% 七彩铃兰叶 5 个 + 50% 七彩铃兰 1 个。
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- 三月苗 -->
+                    <div class="item-card">
+                        <div class="item-icon">
+                            <img src="assets/march_seedlings.png" alt="三月苗">
+                        </div>
+                        <div class="item-info">
+                            <h4 class="item-name">三月苗</h4>
+                            <p class="item-price">1 小袅币 / 个</p>
+                            <p class="item-detail">
+                                生长分为 <strong>4 个阶段</strong>（施肥 + 蝶灵权杖催熟）。<br>
+                                <strong>采摘获得：</strong>100% 月石叶 1 个 + 100% 月石 1 个。
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- 蛊蓉草 -->
+                    <div class="item-card">
+                        <div class="item-icon">
+                            <img src="assets/small_plant_gurongcao.png" alt="蛊蓉草">
+                        </div>
+                        <div class="item-info">
+                            <h4 class="item-name">蛊蓉草</h4>
+                            <p class="item-price">1 小袅币 / 个</p>
+                            <p class="item-detail">
+                                生长分为 <strong>4 个阶段</strong>（施肥 + 蝶灵权杖催熟）。<br>
+                                <strong>采摘获得：</strong>100% 草 5 个 + 50% 蛊蓉 1 个。
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- 黑莲 -->
+                    <div class="item-card">
+                        <div class="item-icon">
+                            <img src="assets/small_plant_heilian.png" alt="黑莲">
+                        </div>
+                        <div class="item-info">
+                            <h4 class="item-name">黑莲</h4>
+                            <p class="item-price">1 小袅币 / 个</p>
+                            <p class="item-detail">
+                                生长分为 <strong>4 个阶段</strong>（施肥 + 蝶灵权杖催熟）。<br>
+                                <strong>采摘获得：</strong>100% 黑莲叶 5 个 + 50% 黑莲花 1 个。<br>
+                                黑莲叶会腐烂。
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- 火凤莲 -->
+                    <div class="item-card">
+                        <div class="item-icon">
+                            <img src="assets/small_plant_huofenglian_flower.png" alt="火凤莲">
+                        </div>
+                        <div class="item-info">
+                            <h4 class="item-name">火凤莲</h4>
+                            <p class="item-price">1 小袅币 / 个</p>
+                            <p class="item-detail">
+                                生长分为 <strong>4 个阶段</strong>（施肥 + 蝶灵权杖催熟）。<br>
+                                <strong>采摘获得：</strong>100% 树枝 1 个 + 50% 火凤莲花 1 个。
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- 离地草 -->
+                    <div class="item-card">
+                        <div class="item-icon">
+                            <img src="assets/small_plant_lidicao.png" alt="离地草">
+                        </div>
+                        <div class="item-info">
+                            <h4 class="item-name">离地草</h4>
+                            <p class="item-price">1 小袅币 / 个</p>
+                            <p class="item-detail">
+                                生长分为 <strong>4 个阶段</strong>（施肥 + 蝶灵权杖催熟）。<br>
+                                <strong>采摘获得：</strong>100% 树枝 1 个 + 50% 离地叶 1 个。
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- 瑶光草 -->
+                    <div class="item-card">
+                        <div class="item-icon">
+                            <img src="assets/small_plant_yaoguangcao.png" alt="瑶光草">
+                        </div>
+                        <div class="item-info">
+                            <h4 class="item-name">瑶光草</h4>
+                            <p class="item-price">1 小袅币 / 个</p>
+                            <p class="item-detail">
+                                生长分为 <strong>4 个阶段</strong>（施肥 + 蝶灵权杖催熟）。<br>
+                                <strong>采摘获得：</strong>100% 草 5 个 + 50% 瑶光叶 1 个。
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- 月影幽兰 -->
+                    <div class="item-card">
+                        <div class="item-icon">
+                            <img src="assets/small_plant_yueyinyoulan_flower.png" alt="月影幽兰">
+                        </div>
+                        <div class="item-info">
+                            <h4 class="item-name">月影幽兰</h4>
+                            <p class="item-price">1 小袅币 / 个</p>
+                            <p class="item-detail">
+                                生长分为 <strong>4 个阶段</strong>（施肥 + 蝶灵权杖催熟）。<br>
+                                <strong>采摘获得：</strong>100% 幽兰叶 5 个 + 50% 月影幽兰 1 个。
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- 祝愈草 -->
+                    <div class="item-card">
+                        <div class="item-icon">
+                            <img src="assets/small_plant_zhuyucao.png" alt="祝愈草">
+                        </div>
+                        <div class="item-info">
+                            <h4 class="item-name">祝愈草</h4>
+                            <p class="item-price">1 小袅币 / 个</p>
+                            <p class="item-detail">
+                                生长分为 <strong>4 个阶段</strong>（施肥 + 蝶灵权杖催熟）。<br>
+                                <strong>采摘获得：</strong>100% 祝愈叶 5 个 + 50% 祝愈花 1 个。
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+                <p style="text-align:center;margin-top:24px;color:var(--color-text);font-size:0.88rem;opacity:0.75;">
+                    💡 商店其他植物暂时没有用处，后续更新再追加介绍。
+                </p>
+            </div>
+
+            <!-- 栏目3：花草盆栽（占位） -->
+            <div class="cat-section" id="cat-potted">
+                <div class="cat-section-header">
+                    <span class="cat-section-icon">🪴</span>
+                    <h3 class="cat-section-title">花草盆栽</h3>
+                    <span class="cat-section-meta">栏目 3 / 9</span>
+                </div>
+                <div class="placeholder-box">
+                    <strong>🌿 建家摆件 · 庭院装饰</strong>
+                    该栏目商品内容待袅袅后续补充介绍<br>
+                    <!-- 后续按以下格式添加商品卡片：<br>
+                    <code style="background:rgba(0,0,0,0.05);padding:2px 6px;border-radius:4px;">&lt;div class="item-card"&gt;...&lt;/div&gt;</code> -->
+                </div>
+            </div>
+
+            <!-- 栏目4：材料杂货（占位） -->
+            <div class="cat-section" id="cat-materials">
+                <div class="cat-section-header">
+                    <span class="cat-section-icon">📦</span>
+                    <h3 class="cat-section-title">材料杂货</h3>
+                    <span class="cat-section-meta">栏目 4 / 9</span>
+                </div>
+                <div class="placeholder-box">
+                    <strong>🧪 炼金 · 装备 · 料理原料</strong>
+                    该栏目商品内容待袅袅后续补充介绍
+                </div>
+            </div>
+
+            <!-- 栏目5：冒险装备 -->
+            <div class="cat-section" id="cat-equip">
+                <div class="cat-section-header">
+                    <span class="cat-section-icon">⚔️</span>
+                    <h3 class="cat-section-title">冒险装备</h3>
+                    <span class="cat-section-meta">栏目 5 / 9</span>
+                </div>
+                <p style="color:var(--color-text);font-size:0.92rem;line-height:1.8;margin-bottom:20px;padding:14px 18px;background:rgba(255,235,200,0.04);border-left:3px solid var(--color-primary);border-radius:8px;">
+                    <strong>MOD道具</strong>（包含加强 / 美化原版道具）
+                </p>
+                <div class="item-grid">
+
+                    <!-- 背包 -->
+                    <div class="item-card">
+                        <div class="item-icon">
+                            <img src="assets/backpack_roseblack.png" alt="背包">
+                        </div>
+                        <div class="item-info">
+                            <h4 class="item-name">背包</h4>
+                            <p class="item-price">1 小袅币</p>
+                            <p class="item-detail">
+                                <strong>14格大背包</strong>，扩大携带容量，冒险更从容。
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- 暖石 -->
+                    <div class="item-card">
+                        <div class="item-icon">
+                            <img src="assets/heatrock_lotus.png" alt="暖石">
+                        </div>
+                        <div class="item-info">
+                            <h4 class="item-name">暖石</h4>
+                            <p class="item-price">1 小袅币</p>
+                            <p class="item-detail">
+                                <strong>无耐久</strong>，永久使用的保暖道具。
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- 手提灯 -->
+                    <div class="item-card">
+                        <div class="item-icon">
+                            <img src="assets/niao_st_lantern_meiguijin.png" alt="手提灯">
+                        </div>
+                        <div class="item-info">
+                            <h4 class="item-name">手提灯</h4>
+                            <p class="item-price">5 小袅币</p>
+                            <p class="item-detail">
+                                <strong>添加燃料：</strong>发光浆果 + 萤火虫<br>
+                                便携照明，黑夜冒险必备。
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- 月灵权杖 -->
+                    <div class="item-card">
+                        <div class="item-icon">
+                            <img src="assets/niao_eq_staff_moon_sprite.png" alt="月灵权杖">
+                        </div>
+                        <div class="item-info">
+                            <h4 class="item-name">月灵权杖</h4>
+                            <p class="item-price">10 小袅币</p>
+                            <p class="item-detail">
+                                修改贴图大小、正反、换皮肤。<br>
+                                <strong>上翅膀：</strong>换皮肤<br>
+                                <strong>下翅膀：</strong>还原初始模样<br>
+                                <strong>上按键：</strong>地毯改变方向<br>
+                                <strong>左右按键：</strong>改变贴图大小<br>
+                                <strong>下按键：</strong>贴图镜像翻转
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- 蝶灵权杖 -->
+                    <div class="item-card">
+                        <div class="item-icon">
+                            <img src="assets/niao_eq_staff_butterfly_sprite.png" alt="蝶灵权杖">
+                        </div>
+                        <div class="item-info">
+                            <h4 class="item-name">蝶灵权杖</h4>
+                            <p class="item-price">10 小袅币</p>
+                            <p class="item-detail">
+                                <strong>催熟 MOD 植物</strong>，加速植物生长，省时省力。
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- 宠物项圈 -->
+                    <div class="item-card">
+                        <div class="item-icon">
+                            <img src="assets/niao_item_pet_collar.png" alt="宠物项圈">
+                        </div>
+                        <div class="item-info">
+                            <h4 class="item-name">宠物项圈</h4>
+                            <p class="item-price">绑定岩石巢穴小宠物</p>
+                            <p class="item-detail">
+                                <strong>作用：</strong>绑定后宠物项圈放地上，宠物不会再跟随玩家。<br>
+                                <strong>弃养：</strong>在岩石巢穴，拿着项圈点击巢穴。<br>
+                                也可将宠物放置 <strong>【懒云藤窝】</strong>。
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+                <p style="text-align:center;margin-top:24px;color:var(--color-text);font-size:0.88rem;opacity:0.75;">
+                    💡 暂无其他物品，后续更新再补充。
+                </p>
+            </div>
+
+            <!-- 栏目6：玩偶之家（占位） -->
+            <div class="cat-section" id="cat-dolls">
+                <div class="cat-section-header">
+                    <span class="cat-section-icon">🧸</span>
+                    <h3 class="cat-section-title">玩偶之家</h3>
+                    <span class="cat-section-meta">栏目 6 / 9</span>
+                </div>
+                <div class="placeholder-box">
+                    <strong>🧸 袅袅相关玩偶摆件</strong>
+                    该栏目商品内容待袅袅后续补充介绍
+                </div>
+            </div>
+
+            <!-- 栏目7：袅袅周边（占位） -->
+            <div class="cat-section" id="cat-merch">
+                <div class="cat-section-header">
+                    <span class="cat-section-icon">🎁</span>
+                    <h3 class="cat-section-title">袅袅周边</h3>
+                    <span class="cat-section-meta">栏目 7 / 9</span>
+                </div>
+                <div class="placeholder-box">
+                    <strong>🎀 角色主题纪念品</strong>
+                    该栏目商品内容待袅袅后续补充介绍
+                </div>
+            </div>
+
+            <!-- 栏目8：鲜香美食（占位） -->
+            <div class="cat-section" id="cat-food">
+                <div class="cat-section-header">
+                    <span class="cat-section-icon">🍜</span>
+                    <h3 class="cat-section-title">鲜香美食</h3>
+                    <span class="cat-section-meta">栏目 8 / 9</span>
+                </div>
+                <div class="placeholder-box">
+                    <strong>🍲 各地特色料理</strong>
+                    该栏目商品内容待袅袅后续补充介绍
+                </div>
+            </div>
+
+            <!-- 栏目9：宜家地板（占位） -->
+            <div class="cat-section" id="cat-floor">
+                <div class="cat-section-header">
+                    <span class="cat-section-icon">🟫</span>
+                    <h3 class="cat-section-title">宜家地板</h3>
+                    <span class="cat-section-meta">栏目 9 / 9</span>
+                </div>
+                <div class="placeholder-box">
+                    <strong>🪵 多种风格地板材质</strong>
+                    该栏目商品内容待袅袅后续补充介绍
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ==================== 页脚 ==================== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-logo">
+                <span>🍲</span> 炊烟袅袅
+            </div>
+            <div class="footer-links">
+                <a href="index.html#about">关于</a>
+                <a href="index.html#features">系列</a>
+                <a href="index.html#gallery">截图</a>
+                <a href="index.html#download">下载</a>
+                <a href="index.html#faq">FAQ</a>
+            </div>
+            <div class="footer-divider"></div>
+            <p class="footer-copy">
+                炊烟袅袅 MOD · 为爱发电 · 持续更新<br>
+                © 2026 炊烟袅袅 · 仅供学习交流使用 · 请勿搬运商用
+            </p>
+        </div>
+    </footer>
+
+    <!-- 返回顶部按钮 -->
+    <button class="back-to-top" id="backToTop" onclick="scrollToTop()">↑</button>
+
+    <!-- ==================== 浮动书本标签（版权与声明） ==================== -->
+    <button class="book-float" id="bookFloat" onclick="openBookModal()" title="版权与声明">
+        <span class="book-float-icon">📖</span>
+        <span class="book-float-label">声明</span>
+    </button>
+
+    <!-- ==================== 版权声明弹窗 ==================== -->
+    <div class="book-modal-overlay" id="bookModalOverlay" onclick="closeBookModal(event)">
+        <div class="book-modal" onclick="event.stopPropagation()">
+            <button class="book-modal-close" onclick="closeBookModal()">✕</button>
+            <h3 class="book-modal-title">📜 版权与声明</h3>
+            <div class="book-modal-body">
+                <div class="book-modal-grid">
+                    <div class="book-modal-card">
+                        <h4>🎨 素材来源</h4>
+                        <ul>
+                            <li>部分贴图自小红书博主授权原创 + 其他游戏贴图临摹</li>
+                            <li>部分贴图来自AI素材图临摹，如和其他MOD雷同纯属巧合</li>
+                            <li>人物形象授权自bilibili平台UP主：<strong>袅袅要睡大觉</strong></li>
+                        </ul>
+                    </div>
+                    <div class="book-modal-card">
+                        <h4>📜 二创声明</h4>
+                        <ul>
+                            <li>本MOD添加有来自《桃源深处有人家》《仙山小农》贴图二创内容</li>
+                            <li>非MOD与官方合作，但已与官方获得联系，并得到肯定回复</li>
+                            <li>大家可以放心建家用，后续也会持续为爱发电式更新</li>
+                            <li>所有内容直接订阅MOD游玩即可，无任何限制</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="book-modal-warning">
+                    <strong>⚠️ 重要提醒：</strong>
+                    本MOD无任何私下盈利收费项目，切勿上当受骗！！！！！　
+                    请勿将本MOD二创内容私自搬运或商用！！！本MOD无权给予授权
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== JavaScript ==================== -->
+    <script>
+        // 返回顶部按钮
+        const backToTop = document.getElementById('backToTop');
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 400) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // 滚动渐入动画
+        const observerOptions = {
+            threshold: 0.15,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // 图片展示区点击提示
+        document.querySelectorAll('.gallery-item').forEach(item => {
+            item.addEventListener('click', function() {
+                console.log('提示：请在代码中替换此占位框为实际图片');
+            });
+        });
+
+        // ===== 版权声明弹窗 =====
+        function openBookModal() {
+            document.getElementById('bookModalOverlay').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeBookModal(event) {
+            if (event && event.target.closest('.book-modal')) return;
+            document.getElementById('bookModalOverlay').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeBookModal();
+        });
+    </script>
+    <script src="search.js?v=20260807"></script>
+    <script src="effects.js?v=20260807_4"></script>
+    <script src="palace-lamp.js?v=20260807"></script>
+</body>
+</html>

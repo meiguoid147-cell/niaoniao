@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>袅袅原创系列 | 炊烟袅袅 MOD 百科</title>
+    <link rel="stylesheet" href="style.css?v=20260807_4">
+</head>
+<body>
+
+    <!-- ==================== 搜索栏 ==================== -->
+    <div class="search-bar-wrapper" id="searchBarWrapper">
+        <div class="search-bar">
+            <div class="search-input-wrapper">
+                <span class="search-icon">🔍</span>
+                <input type="text" class="search-input" id="searchInput" placeholder="搜索全站内容…（如：渡鸦、桃园、料理、建筑）" autocomplete="off">
+                <button class="search-clear" id="searchClear" onclick="clearSearch()">✕</button>
+            </div>
+            <div class="search-results" id="searchResults"></div>
+        </div>
+    </div>
+
+    <!-- ==================== 系列页面导航栏 ==================== -->
+    <nav class="series-nav">
+        <div class="container">
+            <div class="series-nav-left">
+                <a href="index.html" class="series-nav-back">← 返回首页</a>
+                <span class="series-nav-title">✨ 袅袅原创系列</span>
+            </div>
+            <ul class="series-nav-links">
+                <li><a href="series-duya.html">渡鸦商店</a></li>
+                <li><a href="series-gufeng.html">古风景观</a></li>
+                <li><a href="series-taoyuan.html">桃园系列</a></li>
+                <li><a href="series-shishang.html">时尚家居</a></li>
+                <li><a href="series-xianshan.html">仙山小农</a></li>
+                <li><a href="series-niaoniao.html" class="current">袅袅原创</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- ==================== 系列详情区 ==================== -->
+    <section class="section series-detail" id="series-niaoniao" style="padding-top:40px;">
+        <div class="container">
+            <div class="series-header">
+                <div class="series-icon-big">✨</div>
+                <div>
+                    <h1 class="section-title" style="text-align:left;margin-bottom:8px;">袅袅原创系列</h1>
+                    <p class="section-subtitle" style="text-align:left;margin-bottom:0;">袅袅团队独家原创 · 独具匠心</p>
+                </div>
+            </div>
+            <div class="series-intro">
+                <p>袅袅原创系列包含<strong>冒险装备物品、MOD人物袅袅的专属道具、药水系统</strong>等核心内容。从种植采集到装备强化，从药水熬制到战斗辅助，涵盖了MOD的主要玩法系统。</p>
+            </div>
+            <h2 class="series-sub-heading">📝 道具介绍</h2>
+
+            <!-- ========== MOD 货币 ========== -->
+            <div class="currency-block fade-in">
+                <h3 class="currency-block-title">💰 MOD 货币</h3>
+                <p class="currency-block-sub">非常常用！大部分物品制作材料</p>
+                <div class="currency-grid">
+                    <div class="currency-card">
+                        <div class="currency-icon">
+                            <img src="assets/niaoniao_token.png" alt="小袅币">
+                        </div>
+                        <div class="currency-info">
+                            <h4>小袅币</h4>
+                            <p class="currency-recipe"><strong>制作：</strong>1 大便 = 1 小袅币</p>
+                            <p class="currency-use">MOD 通用货币，购买道具、存入商店余额、制作大部分物品的核心材料。</p>
+                        </div>
+                    </div>
+                    <div class="currency-card">
+                        <div class="currency-icon">
+                            <img src="assets/plant_architecture_encyclopedia.png" alt="精灵百科">
+                        </div>
+                        <div class="currency-info">
+                            <h4>精灵百科</h4>
+                            <p class="currency-recipe"><strong>通用：</strong>50 理智 + 50 生命</p>
+                            <p class="currency-recipe"><strong>袅袅专属：</strong>10 蝴蝶翅膀</p>
+                            <p class="currency-use">查阅精灵世界知识的工具书，是药水制作的核心材料之一。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========== 魔法锅 ========== -->
+            <div class="magic-pot-block fade-in">
+                <h3 class="currency-block-title">🪄 魔法锅</h3>
+                <p class="currency-block-sub">融合了精灵魔法 + 暗影魔法的药水熬制锅</p>
+                <div class="magic-pot-card">
+                    <div class="magic-pot-icon">
+                        <img src="assets/niao_building_magic_pot.png" alt="魔法锅">
+                    </div>
+                    <div class="magic-pot-info">
+                        <p class="magic-pot-recipe"><strong>制作配方：</strong>3 精灵百科 + 5 噩梦燃料 + 2 活木</p>
+                        <ul class="magic-pot-rules">
+                            <li>制作后摆放在地面，鼠标左键打开药水制作和配方界面</li>
+                            <li>鼠标放置物品图标上会介绍<strong>药水名 + 所需材料</strong></li>
+                            <li>按配方 <strong>1 : 1</strong> 制作药水</li>
+                            <li class="warning">⚠️ 注意：严格按照配方，失败会变腐烂物</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========== 药水直接服用 ========== -->
+            <div class="potion-block fade-in">
+                <h3 class="currency-block-title">🧪 药水直接服用介绍</h3>
+                <p class="currency-block-sub">药水统一配方：对应材料 + 1 精灵粉尘，在魔法锅中熬制</p>
+                <div class="potion-grid">
+                    <div class="potion-card">
+                        <div class="potion-icon"><img src="assets/niao_item_blightgu_magic_potion.png" alt="蛊蓉药水"></div>
+                        <h4>蛊蓉药水</h4>
+                        <p class="potion-effect">食用后精神值清 0</p>
+                        <p class="potion-recipe">1 蛊蓉花 + 1 精灵粉尘</p>
+                    </div>
+                    <div class="potion-card">
+                        <div class="potion-icon"><img src="assets/niao_item_black_lotus_potion.png" alt="黑莲药水"></div>
+                        <h4>黑莲药水</h4>
+                        <p class="potion-effect">食用后血量值清 0</p>
+                        <p class="potion-recipe">1 黑莲花 + 1 精灵粉尘</p>
+                    </div>
+                    <div class="potion-card">
+                        <div class="potion-icon"><img src="assets/niao_item_red_lotus_potion.png" alt="火凤莲药水"></div>
+                        <h4>火凤莲药水</h4>
+                        <p class="potion-effect">5 分钟内挖矿速度 × 3</p>
+                        <p class="potion-recipe">1 火凤莲 + 1 精灵粉尘</p>
+                    </div>
+                    <div class="potion-card">
+                        <div class="potion-icon"><img src="assets/niao_item_speed_potion.png" alt="离地药水"></div>
+                        <h4>离地药水</h4>
+                        <p class="potion-effect">移动速度 +【步行手杖】× 3 天</p>
+                        <p class="potion-recipe">1 离地叶 + 1 精灵粉尘</p>
+                    </div>
+                    <div class="potion-card">
+                        <div class="potion-icon"><img src="assets/niao_item_glory_magic_potion.png" alt="瑶光药水"></div>
+                        <h4>瑶光药水</h4>
+                        <p class="potion-effect">头上生成火球，提供 4 地皮光照</p>
+                        <p class="potion-recipe">1 瑶光叶 + 1 精灵粉尘</p>
+                    </div>
+                    <div class="potion-card">
+                        <div class="potion-icon"><img src="assets/niao_item_light_magic_potion.png" alt="幽兰药水"></div>
+                        <h4>幽兰药水</h4>
+                        <p class="potion-effect">回复 100 精神值</p>
+                        <p class="potion-recipe">1 月影幽兰 + 1 精灵粉尘</p>
+                    </div>
+                    <div class="potion-card">
+                        <div class="potion-icon"><img src="assets/niao_item_heal_magic_potion.png" alt="祝愈药水"></div>
+                        <h4>祝愈药水</h4>
+                        <p class="potion-effect">回复 100 血量</p>
+                        <p class="potion-recipe">1 祝愈花 + 1 精灵粉尘</p>
+                    </div>
+                    <div class="potion-card">
+                        <div class="potion-icon"><img src="assets/niao_item_bamboo_potion.png" alt="竹芽药水"></div>
+                        <h4>竹芽药水</h4>
+                        <p class="potion-effect">5 分钟内砍树速度 × 3</p>
+                        <p class="potion-recipe">1 竹叶 + 1 精灵粉尘</p>
+                    </div>
+                    <div class="potion-card">
+                        <div class="potion-icon"><img src="assets/niao_item_rose_potion.png" alt="玫瑰药水"></div>
+                        <h4>玫瑰药水</h4>
+                        <p class="potion-effect">【采蜜 + 春天蜜蜂】不会攻击玩家</p>
+                        <p class="potion-recipe">1 玫瑰花瓣 + 1 精灵粉尘</p>
+                    </div>
+                    <div class="potion-card">
+                        <div class="potion-icon"><img src="assets/niao_item_lily_of_the_valley_potion.png" alt="铃兰药水"></div>
+                        <h4>铃兰药水</h4>
+                        <p class="potion-effect">步步生花，自动与植物对话 × 3 天</p>
+                        <p class="potion-recipe">1 铃兰花 + 1 精灵粉尘</p>
+                    </div>
+                    <div class="potion-card">
+                        <div class="potion-icon"><img src="assets/niao_item_moon_crystal_potion.png" alt="月石药水"></div>
+                        <h4>月石药水</h4>
+                        <p class="potion-effect">无视夏天绿洲沙尘暴 × 1 天</p>
+                        <p class="potion-recipe">1 月石叶 + 1 精灵粉尘</p>
+                    </div>
+                </div>
+                <p class="potion-footer"><em>暂无其他药水</em></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== 页脚 ==================== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-logo">
+                <span>🍲</span> 炊烟袅袅
+            </div>
+            <div class="footer-links">
+                <a href="index.html#about">关于</a>
+                <a href="index.html#features">系列</a>
+                <a href="index.html#gallery">截图</a>
+                <a href="index.html#download">下载</a>
+                <a href="index.html#faq">FAQ</a>
+            </div>
+            <div class="footer-divider"></div>
+            <p class="footer-copy">
+                炊烟袅袅 MOD · 为爱发电 · 持续更新<br>
+                © 2026 炊烟袅袅 · 仅供学习交流使用 · 请勿搬运商用
+            </p>
+        </div>
+    </footer>
+
+    <!-- 返回顶部按钮 -->
+    <button class="back-to-top" id="backToTop" onclick="scrollToTop()">↑</button>
+
+    <!-- ==================== 浮动书本标签（版权与声明） ==================== -->
+    <button class="book-float" id="bookFloat" onclick="openBookModal()" title="版权与声明">
+        <span class="book-float-icon">📖</span>
+        <span class="book-float-label">声明</span>
+    </button>
+
+    <!-- ==================== 版权声明弹窗 ==================== -->
+    <div class="book-modal-overlay" id="bookModalOverlay" onclick="closeBookModal(event)">
+        <div class="book-modal" onclick="event.stopPropagation()">
+            <button class="book-modal-close" onclick="closeBookModal()">✕</button>
+            <h3 class="book-modal-title">📜 版权与声明</h3>
+            <div class="book-modal-body">
+                <div class="book-modal-grid">
+                    <div class="book-modal-card">
+                        <h4>🎨 素材来源</h4>
+                        <ul>
+                            <li>部分贴图自小红书博主授权原创 + 其他游戏贴图临摹</li>
+                            <li>部分贴图来自AI素材图临摹，如和其他MOD雷同纯属巧合</li>
+                            <li>人物形象授权自bilibili平台UP主：<strong>袅袅要睡大觉</strong></li>
+                        </ul>
+                    </div>
+                    <div class="book-modal-card">
+                        <h4>📜 二创声明</h4>
+                        <ul>
+                            <li>本MOD添加有来自《桃源深处有人家》《仙山小农》贴图二创内容</li>
+                            <li>非MOD与官方合作，但已与官方获得联系，并得到肯定回复</li>
+                            <li>大家可以放心建家用，后续也会持续为爱发电式更新</li>
+                            <li>所有内容直接订阅MOD游玩即可，无任何限制</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="book-modal-warning">
+                    <strong>⚠️ 重要提醒：</strong>
+                    本MOD无任何私下盈利收费项目，切勿上当受骗！！！！！　
+                    请勿将本MOD二创内容私自搬运或商用！！！本MOD无权给予授权
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== JavaScript ==================== -->
+    <script>
+        // 返回顶部按钮
+        const backToTop = document.getElementById('backToTop');
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 400) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // 滚动渐入动画
+        const observerOptions = {
+            threshold: 0.15,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // 图片展示区点击提示
+        document.querySelectorAll('.gallery-item').forEach(item => {
+            item.addEventListener('click', function() {
+                console.log('提示：请在代码中替换此占位框为实际图片');
+            });
+        });
+
+        // ===== 版权声明弹窗 =====
+        function openBookModal() {
+            document.getElementById('bookModalOverlay').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeBookModal(event) {
+            if (event && event.target.closest('.book-modal')) return;
+            document.getElementById('bookModalOverlay').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeBookModal();
+        });
+    </script>
+    <script src="search.js?v=20260807"></script>
+    <script src="effects.js?v=20260807_4"></script>
+    <script src="palace-lamp.js?v=20260807"></script>
+</body>
+</html>

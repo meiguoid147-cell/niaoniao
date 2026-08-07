@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>炊烟袅袅 MOD 百科 | 饥荒</title>
+    <meta name="description" content="炊烟袅袅 — 一款为《饥荒》打造的温馨田园美食MOD。炊烟升起，归家有饭。">
+    <link rel="stylesheet" href="style.css?v=20260807_5">
+</head>
+<body>
+
+    <!-- ==================== 导航栏 ==================== -->
+    <!-- 【可修改】导航栏标题和链接可自行调整 -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <a href="#hero" class="nav-logo">
+                <span class="nav-logo-icon">炊</span>
+                <span>炊烟袅袅 MOD 百科</span>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#about">简介</a></li>
+                <li class="nav-dropdown">
+                    <a href="#features">系列 ▾</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="#features">▸ 系列总览</a></li>
+                        <li><a href="series-duya.html">▸ 渡鸦商店</a></li>
+                        <li><a href="series-gufeng.html">▸ 古风景观</a></li>
+                        <li><a href="series-taoyuan.html">▸ 桃园系列</a></li>
+                        <li><a href="series-shishang.html">▸ 时尚家居</a></li>
+                        <li><a href="series-xianshan.html">▸ 仙山小农</a></li>
+                        <li><a href="series-niaoniao.html">▸ 袅袅原创</a></li>
+                    </ul>
+                </li>
+                <li><a href="#mod-character">袅袅道具</a></li>
+                <li><a href="#gallery">截图</a></li>
+                <li><a href="#video">视频</a></li>
+                <li><a href="#details">详情</a></li>
+                <li><a href="#roadmap">更新计划</a></li>
+                <li><a href="#download">下载</a></li>
+                <li><a href="#credits">团队</a></li>
+                <li><a href="javascript:void(0)" onclick="openBookModal()">声明</a></li>
+                <li><a href="#faq">FAQ</a></li>
+            </ul>
+            <button class="nav-toggle" id="navToggle">☰</button>
+        </div>
+    </nav>
+
+    <!-- ==================== 搜索栏 ==================== -->
+    <div class="search-bar-wrapper" id="searchBarWrapper">
+        <div class="search-bar">
+            <div class="search-input-wrapper">
+                <span class="search-icon">🔍</span>
+                <input type="text" class="search-input" id="searchInput" placeholder="搜索全站内容…（如：渡鸦、桃园、料理、建筑）" autocomplete="off">
+                <button class="search-clear" id="searchClear" onclick="clearSearch()">✕</button>
+            </div>
+            <div class="search-results" id="searchResults"></div>
+        </div>
+    </div>
+
+    <!-- ==================== Hero 英雄区 ==================== -->
+    <!-- 【可修改】MOD名称、标语、徽标均可替换 -->
+    <section class="hero" id="hero">
+        <!-- 全屏背景图 -->
+        <div class="hero-bg" style="background-image: url('assets/hero_guofeng.png');"></div>
+        <!-- 暗化蒙版（让文字清晰） -->
+        <div class="hero-overlay"></div>
+        <!-- 顶部暖色光晕（夕阳感） -->
+        <div class="hero-glow"></div>
+        <!-- 顶部烟雾 -->
+        <div class="hero-smoke">
+            <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+        </div>
+
+        <!-- 装饰祥云（左上） -->
+        <svg class="auspicious-cloud cloud-tl" width="180" height="90" viewBox="0 0 180 90" style="position:absolute;top:120px;left:5%;opacity:0.20;">
+            <path d="M20,60 Q30,30 50,40 Q60,20 80,30 Q90,15 110,25 Q120,10 140,25 Q160,20 165,45 Q170,60 150,65 Q140,75 120,70 Q100,75 80,70 Q60,75 40,70 Q25,75 20,60 Z" fill="#B73239" stroke="#C9A961" stroke-width="1"/>
+            <path d="M40,55 Q50,45 65,50" stroke="#C9A961" stroke-width="0.5" fill="none"/>
+            <path d="M90,55 Q100,45 115,50" stroke="#C9A961" stroke-width="0.5" fill="none"/>
+        </svg>
+
+        <!-- 装饰祥云（右上） -->
+        <svg class="auspicious-cloud cloud-tr" width="220" height="100" viewBox="0 0 220 100" style="position:absolute;top:140px;right:3%;opacity:0.18;">
+            <path d="M20,70 Q35,40 60,50 Q75,25 100,40 Q115,20 140,35 Q160,25 175,50 Q190,35 205,55 Q210,75 185,75 Q170,85 145,80 Q120,85 95,80 Q65,85 40,80 Q20,85 20,70 Z" fill="#B73239" stroke="#C9A961" stroke-width="1"/>
+        </svg>
+
+        <!-- 装饰竹叶（左下） -->
+        <svg class="bamboo" width="60" height="200" viewBox="0 0 60 200" style="position:absolute;bottom:80px;left:3%;opacity:0.30;">
+            <line x1="15" y1="0" x2="15" y2="200" stroke="#6B8E5A" stroke-width="3"/>
+            <ellipse cx="20" cy="40" rx="20" ry="6" fill="#6B8E5A" transform="rotate(-30 20 40)"/>
+            <ellipse cx="12" cy="80" rx="18" ry="5" fill="#6B8E5A" transform="rotate(30 12 80)"/>
+            <ellipse cx="22" cy="130" rx="20" ry="6" fill="#6B8E5A" transform="rotate(-30 22 130)"/>
+            <ellipse cx="10" cy="170" rx="16" ry="5" fill="#6B8E5A" transform="rotate(30 10 170)"/>
+        </svg>
+
+        <!-- 装饰竹叶（右下） -->
+        <svg class="bamboo" width="60" height="200" viewBox="0 0 60 200" style="position:absolute;bottom:80px;right:3%;opacity:0.30;">
+            <line x1="45" y1="0" x2="45" y2="200" stroke="#6B8E5A" stroke-width="3"/>
+            <ellipse cx="40" cy="40" rx="20" ry="6" fill="#6B8E5A" transform="rotate(30 40 40)"/>
+            <ellipse cx="48" cy="80" rx="18" ry="5" fill="#6B8E5A" transform="rotate(-30 48 80)"/>
+            <ellipse cx="38" cy="130" rx="20" ry="6" fill="#6B8E5A" transform="rotate(30 38 130)"/>
+            <ellipse cx="50" cy="170" rx="16" ry="5" fill="#6B8E5A" transform="rotate(-30 50 170)"/>
+        </svg>
+
+        <div class="hero-content">
+            <span class="hero-badge">饥荒 Don't Starve MOD</span>
+            <h1 class="hero-title" data-text="炊烟袅袅">炊烟袅袅</h1>
+            <div class="hero-subtitle">炊烟起 · 归家有饭 · 一席人间烟火</div>
+            <p class="hero-notice">本网站持续更新中，未展示的物品请加入QQ群咨询哦</p>
+            <div class="hero-greeting">
+                <p>希望大家玩得开心，可以的话B站关注一下UP「袅袅要睡大觉」吧～</p>
+                <p>感谢阅读，如后续有任何问题，请直接联系袅袅解决，勿发布过激言论。</p>
+                <p class="hero-thanks">感恩理解与支持 ❤️</p>
+            </div>
+            <div class="hero-buttons">
+                <a href="#download" class="btn btn-primary">获取 MOD</a>
+                <a href="#about" class="btn btn-outline">了解详情</a>
+            </div>
+        </div>
+
+        <div class="scroll-hint">向下滚动探索 ↓</div>
+    </section>
+
+    <!-- ==================== 关于/简介区 ==================== -->
+    <section class="section about" id="about">
+        <div class="container">
+            <h2 class="section-title">关于这个MOD</h2>
+            <p class="section-subtitle">异世界穿越而来的袅袅</p>
+
+            <!-- 顶部横幅主图 -->
+            <div class="about-banner fade-in">
+                <img src="assets/图片高清放大.png" alt="炊烟袅袅 · 袅袅人物立绘">
+                <div class="about-banner-caption">一缕炊烟起 · 半卷山居图</div>
+            </div>
+
+            <!-- 引言段：位于横幅下方居中 -->
+            <div class="about-intro fade-in">
+                <h3>《炊烟袅袅》MOD 介绍</h3>
+                <p>一款主打<strong>国风庭院造景、角色拓展、趣味货币交易、园艺种植、摆件家具</strong>的大型综合休闲建造模组，偏向养老建家、休闲种田玩法，整体美术画风精致柔和。</p>
+            </div>
+
+            <!-- 三大模块卡片（核心玩法 / 制作栏 / 核心系统） -->
+            <div class="about-cards">
+
+                <!-- 卡片 1：核心玩法 -->
+                <div class="about-card fade-in">
+                    <div class="about-card-icon">🏯</div>
+                    <h4>核心玩法</h4>
+                    <ul class="about-card-list">
+                        <li><span class="tag">国风造景</span>中式庭院、假山流水</li>
+                        <li><span class="tag">角色拓展</span>袅袅及专属道具</li>
+                        <li><span class="tag">货币交易</span>小袅币跨存档流通</li>
+                        <li><span class="tag">园艺种植</span>种子四阶段成长</li>
+                        <li><span class="tag">摆件家具</span>上百款装饰</li>
+                    </ul>
+                </div>
+
+                <!-- 卡片 2：五个制作栏 -->
+                <div class="about-card fade-in">
+                    <div class="about-card-icon">📜</div>
+                    <h4>五大制作栏</h4>
+                    <ul class="about-card-list make-list">
+                        <li><strong>炊烟袅袅</strong><span>重要道具 + 袅袅专属</span></li>
+                        <li><strong>古风景观</strong><span>庭院造景与建筑</span></li>
+                        <li><strong>桃源</strong><span>时尚家居与摆设</span></li>
+                        <li><strong>时尚家居</strong><span>现代化家具组合</span></li>
+                        <li><strong>仙山小农</strong><span>田园种植向</span></li>
+                    </ul>
+                </div>
+
+                <!-- 卡片 3：核心系统 -->
+                <div class="about-card fade-in">
+                    <div class="about-card-icon">⚗️</div>
+                    <h4>核心系统</h4>
+                    <ul class="about-card-list system-list">
+                        <li><strong>小袅币</strong><span>大便制作 · 跨存档流通</span></li>
+                        <li><strong>渡鸦商店</strong><span>种子 · 材料 · 盆栽</span></li>
+                        <li><strong>魔法锅</strong><span>融合精灵/暗影魔法药水</span></li>
+                        <li><strong>种植系统</strong><span>四阶段成长 · 蝶灵权杖催熟</span></li>
+                        <li><strong>药水系统</strong><span>11种功能各异的药水</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 尾部包裹段：适用场景 -->
+            <div class="about-extra fade-in">
+                <p>包含<strong>上百款</strong>装饰家具、绿植盆栽、互动摆件、专属角色、特色装备与跨存档货币系统，无论是<strong>单人养老建房</strong>，还是<strong>多人联机打造中式庄园</strong>都十分适配。模组持续更新拓展建筑、植物与装备内容。</p>
+            </div>
+
+            <!-- 底部统计数据条幅 -->
+            <div class="about-stats-banner fade-in">
+                <div class="about-stat">
+                    <div class="stat-number">100<span class="stat-plus">+</span></div>
+                    <div class="stat-label">装饰家具</div>
+                </div>
+                <div class="stats-divider"></div>
+                <div class="about-stat">
+                    <div class="stat-number">100<span class="stat-plus">+</span></div>
+                    <div class="stat-label">绿植盆栽</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== MOD人物袅袅专属道具区 ==================== -->
+    <section class="section mod-character" id="mod-character">
+        <div class="container">
+            <h2 class="section-title">MOD人物袅袅 · 专属道具</h2>
+            <p class="section-subtitle">袅袅原创系列中的人物专属装备</p>
+
+            <!-- 人物立绘 + 三维属性 -->
+            <div class="char-showcase">
+                <div class="char-portrait">
+                    <img src="assets/niaoniao_portrait.png" alt="袅袅立绘" class="char-portrait-img">
+                </div>
+                <div class="char-info">
+                    <h3>袅袅</h3>
+                    <p>异世界穿越而来的少女，拥有专属的骨杖、符帽、猫帽三大道具，在饥荒世界中打造温馨厨房。</p>
+                    <div class="char-stats">
+                        <div class="char-stat-item">
+                            <span class="char-stat-icon">
+                                <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M16 28 C16 28 4 20 4 12 C4 7 8 4 12 4 C14 4 16 6 16 8 C16 6 18 4 20 4 C24 4 28 7 28 12 C28 20 16 28 16 28 Z" fill="#B73239" stroke="#8B1A1F" stroke-width="1.2"/>
+                                </svg>
+                            </span>
+                            <span class="char-stat-value">150</span>
+                        </div>
+                        <div class="char-stat-item">
+                            <span class="char-stat-icon">
+                                <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M8 10 C8 6 12 4 16 4 C22 4 26 8 26 14 C26 18 24 21 20 22 L20 26 C20 28 18 29 16 29 C14 29 12 28 12 26 L12 23 C9 22 8 19 8 16 Z" fill="#E8943A" stroke="#C77A2A" stroke-width="1.2"/>
+                                    <path d="M12 14 C12 12 14 11 16 11" stroke="#A85D1A" stroke-width="0.8" fill="none"/>
+                                </svg>
+                            </span>
+                            <span class="char-stat-value">150</span>
+                        </div>
+                        <div class="char-stat-item">
+                            <span class="char-stat-icon">
+                                <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M10 6 C7 6 4 9 4 13 C4 15 5 17 6 18 C5 19 4 21 4 23 C4 26 7 28 10 28 C11 28 12 27 12 26 L12 24 C14 25 18 25 20 24 L20 26 C20 27 21 28 22 28 C25 28 28 26 28 23 C28 21 27 19 26 18 C27 17 28 15 28 13 C28 9 25 6 22 6 C20 6 18 7 16 9 C14 7 12 6 10 6 Z" fill="#C9A961" stroke="#A88A3E" stroke-width="1.2"/>
+                                    <path d="M10 12 C10 14 11 15 12 15" stroke="#8B7230" stroke-width="0.8" fill="none"/>
+                                    <path d="M20 12 C20 14 21 15 22 15" stroke="#8B7230" stroke-width="0.8" fill="none"/>
+                                </svg>
+                            </span>
+                            <span class="char-stat-value">150</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item-grid">
+
+                <!-- 骨杖 -->
+                <div class="item-card-small">
+                    <div class="item-icon-64">
+                        <img src="assets/niao_eq_staff_bone.png" alt="骨杖">
+                    </div>
+                    <div class="item-stats">
+                        <h4 class="item-name" style="margin-bottom:8px;">🦴 骨杖</h4>
+                        <div class="item-stat-row"><span class="item-stat-key">用途</span><span class="item-stat-val">右键释放禁忌魔法，增加攻击伤害</span></div>
+                        <div class="item-stat-row"><span class="item-stat-key">副作用</span><span class="item-stat-val">每次释放禁忌魔法；扣除 <strong>20</strong> 血量</span></div>
+                        <div class="item-stat-row"><span class="item-stat-key">持续时间</span><span class="item-stat-val"><strong>50 秒</strong></span></div>
+                        <div class="item-stat-row"><span class="item-stat-key">初始伤害</span><span class="item-stat-val"><strong>10</strong></span></div>
+                        <div class="item-stat-row"><span class="item-stat-key">释放禁忌伤害</span><span class="item-stat-val"><strong>110</strong></span></div>
+                        <div class="item-stat-row"><span class="item-stat-key">修复耐久</span><span class="item-stat-val"><strong>1 玫瑰宝石</strong> 增加 5%</span></div>
+                        <div class="item-stat-row"><span class="item-stat-key">制作</span><span class="item-stat-val"><strong>3 黑莲药水 + 5 骨头碎片 + 2 玫瑰宝石</strong></span></div>
+                    </div>
+                </div>
+
+                <!-- 符帽 -->
+                <div class="item-card-small">
+                    <div class="item-icon-64">
+                        <img src="assets/niao_eq_hat_talisman.png" alt="符帽">
+                    </div>
+                    <div class="item-stats">
+                        <h4 class="item-name" style="margin-bottom:8px;">🎀 符帽</h4>
+                        <div class="item-stat-row"><span class="item-stat-key">用途</span><span class="item-stat-val">每秒回 <strong>1</strong> 血量</span></div>
+                        <div class="item-stat-row"><span class="item-stat-key">副作用</span><span class="item-stat-val">无，耐久度随佩戴时间消失</span></div>
+                        <div class="item-stat-row"><span class="item-stat-key">修复耐久</span><span class="item-stat-val"><strong>1 蛊蓉花</strong> 修复 20%</span></div>
+                        <div class="item-stat-row"><span class="item-stat-key">制作</span><span class="item-stat-val"><strong>3 蛊蓉药水 + 5 蜘蛛丝 + 2 黄金</strong></span></div>
+                    </div>
+                </div>
+
+                <!-- 猫帽 -->
+                <div class="item-card-small">
+                    <div class="item-icon-64">
+                        <img src="assets/niao_eq_hat_kitty.png" alt="猫帽">
+                    </div>
+                    <div class="item-stats">
+                        <h4 class="item-name" style="margin-bottom:8px;">🐱 猫帽</h4>
+                        <div class="item-stat-row"><span class="item-stat-key">用途</span><span class="item-stat-val"><strong>80%</strong> 防御，增加手持武器 <strong>50%</strong> 伤害</span></div>
+                        <div class="item-stat-row"><span class="item-stat-key">配合骨杖</span><span class="item-stat-val">每次攻击 <strong>165</strong> 伤害（110 禁忌魔法 + 55 猫帽加持）</span></div>
+                        <div class="item-stat-row"><span class="item-stat-key">副作用</span><span class="item-stat-val">无，耐久度随佩戴时间消失</span></div>
+                        <div class="item-stat-row"><span class="item-stat-key">修复耐久</span><span class="item-stat-val"><strong>1 黑莲花</strong> 修复 20%</span></div>
+                        <div class="item-stat-row"><span class="item-stat-key">制作</span><span class="item-stat-val"><strong>3 黑莲药水 + 5 蜘蛛丝 + 1 猫尾</strong></span></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== 系列分类区 ==================== -->
+    <!-- 【可修改】系列卡片点击会跳转至下方对应系列详情区 -->
+    <section class="section features" id="features">
+        <div class="container">
+            <h2 class="section-title">系列分类</h2>
+            <p class="section-subtitle">点击进入各系列详细介绍</p>
+            <div class="features-grid">
+                <!-- 系列卡片 1：渡鸦商店 -->
+                <a href="series-duya.html" class="series-card fade-in">
+                    <div class="feature-icon feature-icon-img"><img src="assets/duya_shop_icon.png" alt="渡鸦商店"></div>
+                    <h3>渡鸦商店系列</h3>
+                    <p>神秘渡鸦开设的奇珍商店，售卖各类稀有道具与跨界好物。</p>
+                </a>
+                <!-- 系列卡片 2：古风景观 -->
+                <a href="series-gufeng.html" class="series-card fade-in">
+                    <div class="feature-icon">🏯</div>
+                    <h3>古风景观系列</h3>
+                    <p>亭台楼阁、流水飞檐，为你的营地添上一抹东方意境。</p>
+                </a>
+                <!-- 系列卡片 3：桃园 -->
+                <a href="series-taoyuan.html" class="series-card fade-in">
+                    <div class="feature-icon">🌸</div>
+                    <h3>桃园系列</h3>
+                    <p>桃花源里人家，温馨田园与美食生活的悠然之地。</p>
+                </a>
+                <!-- 系列卡片 4：时尚家居 -->
+                <a href="series-shishang.html" class="series-card fade-in">
+                    <div class="feature-icon">🛋️</div>
+                    <h3>时尚家居系列</h3>
+                    <p>现代精致家居单品，让你的小屋焕然一新、温暖别致。</p>
+                </a>
+                <!-- 系列卡片 5：仙山小农 -->
+                <a href="series-xianshan.html" class="series-card fade-in">
+                    <div class="feature-icon">🌾</div>
+                    <h3>仙山小农系列</h3>
+                    <p>仙山脚下的小农日常，蔬果满园、鸡犬相闻的悠然景象。</p>
+                </a>
+                <!-- 系列卡片 6：袅袅原创 -->
+                <a href="series-niaoniao.html" class="series-card fade-in">
+                    <div class="feature-icon">✨</div>
+                    <h3>袅袅原创系列</h3>
+                    <p>袅袅团队独家原创内容，独具匠心的设计与故事。</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== 图片展示区 ==================== -->
+    <!-- 【可修改】每个占位框均可替换为实际游戏截图 -->
+    <section class="section gallery" id="gallery">
+        <div class="container">
+            <h2 class="section-title">游戏截图</h2>
+            <p class="section-subtitle">走进炊烟袅袅的世界</p>
+            <div class="gallery-grid">
+                <!-- 大图占位 -->
+                <!-- 【图片占位】替换方法：删除占位内容，添加 <img src="图片路径" style="width:100%;height:100%;object-fit:cover;border-radius:14px;"> -->
+                <div class="gallery-item large">
+                    <span class="placeholder-icon">📷</span>
+                    <span class="placeholder-text">主展示图<br>（建议尺寸 800×600）</span>
+                </div>
+                <!-- 小图占位 1 -->
+                <div class="gallery-item">
+                    <span class="placeholder-icon">📷</span>
+                    <span class="placeholder-text">截图 1</span>
+                </div>
+                <!-- 小图占位 2 -->
+                <div class="gallery-item">
+                    <span class="placeholder-icon">📷</span>
+                    <span class="placeholder-text">截图 2</span>
+                </div>
+                <!-- 小图占位 3 -->
+                <div class="gallery-item">
+                    <span class="placeholder-icon">📷</span>
+                    <span class="placeholder-text">截图 3</span>
+                </div>
+                <!-- 小图占位 4 -->
+                <div class="gallery-item">
+                    <span class="placeholder-icon">📷</span>
+                    <span class="placeholder-text">截图 4</span>
+                </div>
+                <!-- 小图占位 5 -->
+                <div class="gallery-item">
+                    <span class="placeholder-icon">📷</span>
+                    <span class="placeholder-text">截图 5</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== 视频展示区 ==================== -->
+    <section class="section video-section" id="video">
+        <div class="container">
+            <h2 class="section-title">视频展示</h2>
+            <p class="section-subtitle">异世界穿越而来的袅袅</p>
+            <div class="video-container">
+                <iframe src="//player.bilibili.com/player.html?bvid=BV1P9VC6AEhm&autoplay=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" style="width:100%;height:100%;border-radius:24px;"></iframe>
+            </div>
+            <p class="video-caption">MOD 实机演示视频 · 来源：B站「袅袅要睡大觉」</p>
+        </div>
+    </section>
+
+    <!-- ==================== 更新计划区 ==================== -->
+    <section class="section roadmap" id="roadmap">
+        <div class="container">
+            <h2 class="section-title">更新计划</h2>
+            <p class="section-subtitle">后续持续为爱发电式更新，敬请期待</p>
+            <div class="roadmap-tags">
+                <div class="roadmap-tag">👤 人物</div>
+                <div class="roadmap-tag">🔧 道具</div>
+                <div class="roadmap-tag">🍳 料理</div>
+                <div class="roadmap-tag">🏠 建筑</div>
+                <div class="roadmap-tag">🐔 动物养殖</div>
+                <div class="roadmap-tag">🌱 植物生长</div>
+                <div class="roadmap-tag">✨ 美化</div>
+            </div>
+            <p class="roadmap-note">《锈湖》相关内容还未正式开始制作更新，后续会先联系官方，如得到回复再开始大量更新</p>
+        </div>
+    </section>
+
+    <!-- ==================== 下载/指引区 ==================== -->
+    <!-- 【可修改】下载链接和步骤说明可自行调整 -->
+    <section class="section download" id="download">
+        <div class="container">
+            <h2 class="section-title">获取 MOD</h2>
+            <p class="section-subtitle">几步即可开始你的炊烟袅袅之旅</p>
+            <div class="download-steps">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <h4>订阅 MOD</h4>
+                    <p>前往 Steam 创意工坊搜索「炊烟袅袅」并点击订阅</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <h4>启动游戏</h4>
+                    <p>打开《饥荒》游戏，在 MOD 管理界面中启用「炊烟袅袅」</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <h4>开始游戏</h4>
+                    <p>创建或进入存档，即可体验全新的烹饪乐趣</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">4</div>
+                    <h4>分享反馈</h4>
+                    <p>在创意工坊评论区分享你的体验和建议</p>
+                </div>
+            </div>
+            <div class="download-buttons">
+                <!-- 【链接占位】将 # 替换为 Steam 创意工坊实际链接 -->
+                <a href="#" class="btn-download" target="_blank" rel="noopener">
+                    <span>🎮</span> Steam 创意工坊
+                </a>
+                <!-- 【链接占位】QQ群链接 -->
+                <a href="https://qm.qq.com/q/1018903904" class="btn-download-secondary" target="_blank" rel="noopener">
+                    <span>💬</span> 加入QQ群1018903904向我们反馈bug
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== 常见问题区 ==================== -->
+    <!-- 【可修改】问题和答案均可自行编辑 -->
+    <section class="section faq" id="faq">
+        <div class="container">
+            <h2 class="section-title">常见问题</h2>
+            <p class="section-subtitle">关于这个MOD你可能想知道的</p>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>这个 MOD 支持联机吗？</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>支持。炊烟袅袅 MOD 兼容《饥荒：联机版》，你可以和好友一起享受烹饪的乐趣。请确保所有玩家都订阅并启用了该 MOD。</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>与其他 MOD 有冲突吗？</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>本 MOD 经过充分测试，与大多数热门 MOD 兼容。如果遇到冲突问题，请调整 MOD 加载顺序或反馈给作者。</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>需要新的存档才能使用吗？</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>不需要。你可以直接在已有存档中启用该 MOD，新增内容会在游戏中自然出现。</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>MOD 会持续更新吗？</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>作者会根据玩家反馈持续优化和更新内容，后续计划加入更多食谱、建筑和特殊机制。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== 制作团队与致谢区 ==================== -->
+    <section class="section credits" id="credits">
+        <div class="container">
+            <h2 class="section-title">制作团队与致谢</h2>
+            <p class="section-subtitle">感谢每一位为炊烟袅袅付出心血的创作者</p>
+
+            <!-- 着重感谢 -->
+            <div class="credits-highlight fade-in">
+                <h3>🌟 着重感谢</h3>
+                <p>丝瓜汤 —— 长期一直的为爱相助创作</p>
+            </div>
+
+            <!-- 制作团队 -->
+            <p class="credits-section-label">🎨 参与MOD制作的各位老师</p>
+            <div class="credits-team-grid">
+                <div class="team-member">
+                    <span class="member-icon">👩‍🍳</span>
+                    袅袅
+                </div>
+                <div class="team-member">
+                    <span class="member-icon">🍲</span>
+                    丝瓜汤
+                </div>
+                <div class="team-member">
+                    <span class="member-icon">🎨</span>
+                    十辛本
+                </div>
+                <div class="team-member">
+                    <span class="member-icon">🥄</span>
+                    一勺勺
+                </div>
+                <div class="team-member">
+                    <span class="member-icon">🍊</span>
+                    橘子
+                </div>
+                <div class="team-member">
+                    <span class="member-icon">🌿</span>
+                    siberay
+                </div>
+                <div class="team-member">
+                    <span class="member-icon">📌</span>
+                    李皓奇
+                </div>
+                <div class="team-member">
+                    <span class="member-icon">🌸</span>
+                    王花
+                </div>
+                <div class="team-member">
+                    <span class="member-icon">🧸</span>
+                    团团
+                </div>
+                <div class="team-member">
+                    <span class="member-icon">🕛</span>
+                    十二
+                </div>
+                <div class="team-member">
+                    <span class="member-icon">🌙</span>
+                    幕夜之下
+                </div>
+                <div class="team-member">
+                    <span class="member-icon">📖</span>
+                    幺贰捌
+                    <div class="member-note">《幺贰捌的奥特日常》作者</div>
+                </div>
+            </div>
+
+            <!-- 友情相助 -->
+            <p class="credits-section-label">🤝 感谢友情相助的小伙伴</p>
+            <div class="credits-friends">
+                <span class="friend-tag">雪松</span>
+                <span class="friend-tag">477</span>
+                <span class="friend-tag">屋里小蛮</span>
+                <span class="friend-tag">饥你太美</span>
+                <span class="friend-tag">宇晨</span>
+                <span class="friend-tag">爱妮</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== 页脚 ==================== -->
+    <!-- 【可修改】页脚信息和链接可自行调整 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-logo">
+                <span>🍲</span> 炊烟袅袅
+            </div>
+            <div class="footer-links">
+                <a href="#about">关于</a>
+                <a href="#features">特色</a>
+                <a href="#mod-character">袅袅道具</a>
+                <a href="#gallery">截图</a>
+                <a href="#video">视频</a>
+                <a href="#roadmap">更新计划</a>
+                <a href="#download">下载</a>
+                <a href="#credits">团队</a>
+                <a href="#faq">FAQ</a>
+            </div>
+            <div class="footer-divider"></div>
+            <p class="footer-copy">
+                炊烟袅袅 MOD · 为爱发电 · 持续更新<br>
+                人物形象授权自B站UP「袅袅要睡大觉」· 本MOD无任何盈利收费项目<br>
+                © 2026 炊烟袅袅 · 仅供学习交流使用 · 请勿搬运商用
+            </p>
+        </div>
+    </footer>
+
+    <!-- 返回顶部按钮 -->
+    <button class="back-to-top" id="backToTop" onclick="scrollToTop()">↑</button>
+
+    <!-- ==================== 浮动书本标签（版权与声明） ==================== -->
+    <button class="book-float" id="bookFloat" onclick="openBookModal()" title="版权与声明">
+        <span class="book-float-icon">📖</span>
+        <span class="book-float-label">声明</span>
+    </button>
+
+    <!-- ==================== 版权声明弹窗 ==================== -->
+    <div class="book-modal-overlay" id="bookModalOverlay" onclick="closeBookModal(event)">
+        <div class="book-modal" onclick="event.stopPropagation()">
+            <button class="book-modal-close" onclick="closeBookModal()">✕</button>
+            <h3 class="book-modal-title">📜 版权与声明</h3>
+            <div class="book-modal-body">
+                <div class="book-modal-grid">
+                    <div class="book-modal-card">
+                        <h4>🎨 素材来源</h4>
+                        <ul>
+                            <li>部分贴图自小红书博主授权原创 + 其他游戏贴图临摹</li>
+                            <li>部分贴图来自AI素材图临摹，如和其他MOD雷同纯属巧合</li>
+                            <li>人物形象授权自bilibili平台UP主：<strong>袅袅要睡大觉</strong></li>
+                        </ul>
+                    </div>
+                    <div class="book-modal-card">
+                        <h4>📜 二创声明</h4>
+                        <ul>
+                            <li>本MOD添加有来自《桃源深处有人家》《仙山小农》贴图二创内容</li>
+                            <li>非MOD与官方合作，但已与官方获得联系，并得到肯定回复</li>
+                            <li>大家可以放心建家用，后续也会持续为爱发电式更新</li>
+                            <li>所有内容直接订阅MOD游玩即可，无任何限制</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="book-modal-warning">
+                    <strong>⚠️ 重要提醒：</strong>
+                    本MOD无任何私下盈利收费项目，切勿上当受骗！！！！！　
+                    请勿将本MOD二创内容私自搬运或商用！！！本MOD无权给予授权
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== JavaScript ==================== -->
+    <script>
+        // 导航栏移动端菜单切换
+        const navToggle = document.getElementById('navToggle');
+        const navLinks = document.getElementById('navLinks');
+
+        navToggle.addEventListener('click', function() {
+            navLinks.classList.toggle('active');
+        });
+
+        // 点击导航链接后关闭移动端菜单
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', function() {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // 导航栏滚动效果
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 50) {
+                navbar.style.boxShadow = '0 2px 20px rgba(139, 94, 60, 0.2)';
+            } else {
+                navbar.style.boxShadow = '0 2px 20px rgba(139, 94, 60, 0.15)';
+            }
+        });
+
+        // 返回顶部按钮
+        const backToTop = document.getElementById('backToTop');
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 400) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // FAQ 折叠切换
+        function toggleFAQ(element) {
+            const item = element.parentElement;
+            const isActive = item.classList.contains('active');
+
+            // 关闭所有 FAQ 项
+            document.querySelectorAll('.faq-item').forEach(i => {
+                i.classList.remove('active');
+            });
+
+            // 打开当前项（如果之前是关闭的）
+            if (!isActive) {
+                item.classList.add('active');
+            }
+        }
+
+        // 滚动渐入动画
+        const observerOptions = {
+            threshold: 0.15,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // 图片展示区点击提示
+        document.querySelectorAll('.gallery-item').forEach(item => {
+            item.addEventListener('click', function() {
+                console.log('提示：请在代码中替换此占位框为实际图片');
+            });
+        });
+
+        // ===== 版权声明弹窗 =====
+        function openBookModal() {
+            document.getElementById('bookModalOverlay').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeBookModal(event) {
+            if (event && event.target.closest('.book-modal')) return;
+            document.getElementById('bookModalOverlay').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // 按 ESC 关闭弹窗
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeBookModal();
+        });
+    </script>
+    <script src="search.js?v=20260807"></script>
+    <script src="effects.js?v=20260807_4"></script>
+    <script src="palace-lamp.js?v=20260807"></script>
+</body>
+</html>

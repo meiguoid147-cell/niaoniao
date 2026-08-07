@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>古风景观系列 | 炊烟袅袅 MOD 百科</title>
+    <link rel="stylesheet" href="style.css?v=20260807_4">
+    <style>
+        /* ===== 深度轮播样式（古风主题） ===== */
+        .dc-root {
+            --dc-perspective: 1400px;
+            --dc-card-w: 300px;
+            --dc-card-h: 380px;
+            --dc-depth: 220px;
+            --dc-spread: 90px;
+            --dc-tilt: 22deg;
+            --dc-radius: 18px;
+            --dc-tint: rgba(0, 0, 0, 0.6);
+            --dc-falloff: 0.2;
+            --dc-blur: 6px;
+            --dc-visible: 4;
+
+            position: relative;
+            width: 100%;
+            height: 480px;
+            perspective: var(--dc-perspective);
+            perspective-origin: 50% 45%;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: pan-y;
+            outline: none;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        .dc-stage {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            transform-style: preserve-3d;
+        }
+
+        .dc-card {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: var(--dc-card-w);
+            height: var(--dc-card-h);
+            border-radius: var(--dc-radius);
+            overflow: hidden;
+            transform-origin: center center;
+            backface-visibility: hidden;
+            will-change: transform, opacity, filter;
+            box-shadow:
+                0 8px 32px rgba(0, 0, 0, 0.5),
+                0 2px 8px rgba(0, 0, 0, 0.3),
+                0 0 16px rgba(201, 169, 97, 0.1);
+            background: var(--color-cream-dark, #1E1612);
+            border: 2px solid rgba(201, 169, 97, 0.25);
+            transition: box-shadow 0.3s ease;
+        }
+
+        .dc-card:hover {
+            box-shadow:
+                0 12px 40px rgba(200, 64, 72, 0.3),
+                0 4px 12px rgba(0, 0, 0, 0.3),
+                0 0 24px rgba(212, 176, 106, 0.2);
+        }
+
+        .dc-card-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            pointer-events: none;
+            -webkit-user-drag: none;
+        }
+
+        .dc-card-content {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            text-align: center;
+        }
+
+        .dc-card-icon {
+            font-size: 3.5rem;
+            margin-bottom: 12px;
+            filter: drop-shadow(0 2px 4px rgba(44, 36, 22, 0.3));
+        }
+
+        .dc-card-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--color-brown-dark, #2C2416);
+            font-family: "STKaiti", "KaiTi", "楷体", serif;
+            letter-spacing: 2px;
+            margin-bottom: 6px;
+            text-shadow: 0 0 12px rgba(212, 176, 106, 0.5), 0 1px 3px rgba(0, 0, 0, 0.5);
+        }
+
+        .dc-card-desc {
+            font-size: 0.8rem;
+            color: var(--color-text-light, #6B5D4F);
+            line-height: 1.5;
+        }
+
+        .dc-card-label {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 12px 16px;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.5) 70%, transparent 100%);
+            color: #E8D9B8;
+            font-size: 0.9rem;
+            font-weight: 600;
+            font-family: "STKaiti", "KaiTi", "楷体", serif;
+            letter-spacing: 1px;
+            text-align: center;
+        }
+
+        .dc-tint {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        /* 导航箭头 */
+        .dc-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 100;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: 2px solid rgba(201, 169, 97, 0.4);
+            background: rgba(20, 16, 12, 0.85);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: var(--color-brown-dark, #E8D9B8);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+        }
+
+        .dc-arrow:hover {
+            background: var(--color-primary, #B73239);
+            border-color: var(--color-primary, #B73239);
+            color: #F0E4CC;
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .dc-arrow--prev { left: 16px; }
+        .dc-arrow--next { right: 16px; }
+
+        .dc-arrow svg {
+            display: block;
+        }
+
+        /* 指示器 */
+        .dc-dots {
+            position: absolute;
+            bottom: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+            z-index: 100;
+        }
+
+        .dc-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            border: none;
+            background: rgba(201, 169, 97, 0.4);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            padding: 0;
+        }
+
+        .dc-dot.is-active {
+            background: var(--color-primary, #B73239);
+            transform: scale(1.4);
+            box-shadow: 0 0 8px rgba(183, 50, 57, 0.4);
+        }
+
+        .dc-dot:hover {
+            background: rgba(201, 169, 97, 0.7);
+        }
+
+        .dc-dot.is-active:hover {
+            background: var(--color-primary, #B73239);
+        }
+
+        /* 轮播提示文字 */
+        .dc-hint {
+            text-align: center;
+            color: var(--color-text-light, #6B5D4F);
+            font-size: 0.85rem;
+            margin-top: 8px;
+            margin-bottom: 0;
+            opacity: 0.7;
+        }
+
+        /* 响应式 */
+        @media (max-width: 768px) {
+            .dc-root {
+                height: 380px;
+                --dc-card-w: 220px;
+                --dc-card-h: 280px;
+                --dc-spread: 60px;
+                --dc-depth: 160px;
+            }
+            .dc-card-icon { font-size: 2.5rem; }
+            .dc-card-title { font-size: 0.95rem; }
+            .dc-arrow { width: 36px; height: 36px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ==================== 搜索栏 ==================== -->
+    <div class="search-bar-wrapper" id="searchBarWrapper">
+        <div class="search-bar">
+            <div class="search-input-wrapper">
+                <span class="search-icon">🔍</span>
+                <input type="text" class="search-input" id="searchInput" placeholder="搜索全站内容…（如：渡鸦、桃园、料理、建筑）" autocomplete="off">
+                <button class="search-clear" id="searchClear" onclick="clearSearch()">✕</button>
+            </div>
+            <div class="search-results" id="searchResults"></div>
+        </div>
+    </div>
+
+    <!-- ==================== 系列页面导航栏 ==================== -->
+    <nav class="series-nav">
+        <div class="container">
+            <div class="series-nav-left">
+                <a href="index.html" class="series-nav-back">← 返回首页</a>
+                <span class="series-nav-title">🏯 古风景观系列</span>
+            </div>
+            <ul class="series-nav-links">
+                <li><a href="series-duya.html">渡鸦商店</a></li>
+                <li><a href="series-gufeng.html" class="current">古风景观</a></li>
+                <li><a href="series-taoyuan.html">桃园系列</a></li>
+                <li><a href="series-shishang.html">时尚家居</a></li>
+                <li><a href="series-xianshan.html">仙山小农</a></li>
+                <li><a href="series-niaoniao.html">袅袅原创</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- ==================== 系列详情区 ==================== -->
+    <section class="section series-detail" id="series-gufeng" style="padding-top:40px;">
+        <div class="container">
+            <div class="series-header">
+                <div class="series-icon-big">🏯</div>
+                <div>
+                    <h1 class="section-title" style="text-align:left;margin-bottom:8px;">古风景观系列</h1>
+                    <p class="section-subtitle" style="text-align:left;margin-bottom:0;">亭台楼阁 · 飞檐流水的东方意境</p>
+                </div>
+            </div>
+            <div class="series-intro">
+                <p>古风景观系列是MOD第二个制作栏，包含<strong>部分带功能道具和纯装饰道具</strong>。为你的营地带来浓厚的东方韵味，亭台楼阁、青瓦白墙与自然环境完美融合，营造出悠然的古风意境。</p>
+            </div>
+
+            <h2 class="series-sub-heading">📸 古风建筑展示</h2>
+
+            <!-- ===== 深度轮播 ===== -->
+            <div class="dc-root" id="dcRoot" tabindex="0" role="group" aria-roledescription="carousel" aria-label="古风建筑展示">
+                <div class="dc-stage" id="dcStage">
+                    <!-- 卡片由 JS 动态生成 -->
+                </div>
+                <button type="button" class="dc-arrow dc-arrow--prev" id="dcPrev" aria-label="上一张">
+                    <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+                        <path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+                <button type="button" class="dc-arrow dc-arrow--next" id="dcNext" aria-label="下一张">
+                    <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+                        <path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+                <div class="dc-dots" id="dcDots" role="tablist" aria-label="幻灯片"></div>
+            </div>
+            <p class="dc-hint">← 拖拽 / 滚轮 / 方向键 / 点击卡片 切换 →</p>
+
+            <h2 class="series-sub-heading">📝 道具介绍</h2>
+            <div class="series-text">
+                <h3>🪷 莲花小池塘</h3>
+                <p><strong>用途：</strong>接水+钓鱼</p>
+                <p><strong>制作：</strong>5小袅币</p>
+
+                <h3>🪑 景观坐凳台阶</h3>
+                <p><strong>用途：</strong>双人椅子</p>
+
+                <h3>🏮 青苔路灯 & 宣纸路灯</h3>
+                <p><strong>用途：</strong>照明</p>
+
+                <h3>📦 古风置物架</h3>
+                <p><strong>用途：</strong>存放展示物品</p>
+
+                <p><em>其他物品都是装饰品，无特殊用途。</em></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== 页脚 ==================== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-logo">
+                <span>🍲</span> 炊烟袅袅
+            </div>
+            <div class="footer-links">
+                <a href="index.html#about">关于</a>
+                <a href="index.html#features">系列</a>
+                <a href="index.html#gallery">截图</a>
+                <a href="index.html#download">下载</a>
+                <a href="index.html#faq">FAQ</a>
+            </div>
+            <div class="footer-divider"></div>
+            <p class="footer-copy">
+                炊烟袅袅 MOD · 为爱发电 · 持续更新<br>
+                © 2026 炊烟袅袅 · 仅供学习交流使用 · 请勿搬运商用
+            </p>
+        </div>
+    </footer>
+
+    <!-- 返回顶部按钮 -->
+    <button class="back-to-top" id="backToTop" onclick="scrollToTop()">↑</button>
+
+    <!-- ==================== 浮动书本标签（版权与声明） ==================== -->
+    <button class="book-float" id="bookFloat" onclick="openBookModal()" title="版权与声明">
+        <span class="book-float-icon">📖</span>
+        <span class="book-float-label">声明</span>
+    </button>
+
+    <!-- ==================== 版权声明弹窗 ==================== -->
+    <div class="book-modal-overlay" id="bookModalOverlay" onclick="closeBookModal(event)">
+        <div class="book-modal" onclick="event.stopPropagation()">
+            <button class="book-modal-close" onclick="closeBookModal()">✕</button>
+            <h3 class="book-modal-title">📜 版权与声明</h3>
+            <div class="book-modal-body">
+                <div class="book-modal-grid">
+                    <div class="book-modal-card">
+                        <h4>🎨 素材来源</h4>
+                        <ul>
+                            <li>部分贴图自小红书博主授权原创 + 其他游戏贴图临摹</li>
+                            <li>部分贴图来自AI素材图临摹，如和其他MOD雷同纯属巧合</li>
+                            <li>人物形象授权自bilibili平台UP主：<strong>袅袅要睡大觉</strong></li>
+                        </ul>
+                    </div>
+                    <div class="book-modal-card">
+                        <h4>📜 二创声明</h4>
+                        <ul>
+                            <li>本MOD添加有来自《桃源深处有人家》《仙山小农》贴图二创内容</li>
+                            <li>非MOD与官方合作，但已与官方获得联系，并得到肯定回复</li>
+                            <li>大家可以放心建家用，后续也会持续为爱发电式更新</li>
+                            <li>所有内容直接订阅MOD游玩即可，无任何限制</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="book-modal-warning">
+                    <strong>⚠️ 重要提醒：</strong>
+                    本MOD无任何私下盈利收费项目，切勿上当受骗！！！！！　
+                    请勿将本MOD二创内容私自搬运或商用！！！本MOD无权给予授权
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== JavaScript ==================== -->
+    <script>
+        // ===== 返回顶部按钮 =====
+        const backToTop = document.getElementById('backToTop');
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 400) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // ===== 版权声明弹窗 =====
+        function openBookModal() {
+            document.getElementById('bookModalOverlay').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeBookModal(event) {
+            if (event && event.target.closest('.book-modal')) return;
+            document.getElementById('bookModalOverlay').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeBookModal();
+        });
+
+        // ================================================================
+        //                深度轮播 (Depth Carousel) - 纯 JS 实现
+        // ================================================================
+        (function() {
+            'use strict';
+
+            // ===== 配置 =====
+            var CONFIG = {
+                depth: 220,
+                spread: 90,
+                tilt: 22,
+                tiltDirection: 'right',  // 'right' or 'left'
+                visibleCards: 4,
+                falloff: 0.2,
+                blur: 6,
+                duration: 700,          // ms
+                ease: 'power3.out',
+                loop: true,
+                cardWidth: 300,
+                autoplay: true,
+                autoplayDelay: 4000,
+            };
+
+            // ===== 数据 =====
+            var ITEMS = [
+                { icon: '🪷', title: '莲花小池塘',  desc: '接水 + 钓鱼',         img: 'assets/lotus_small_pond.png' },
+                { icon: '🪑', title: '景观坐凳台阶',  desc: '双人椅子',           img: 'assets/niao_chengmeng_huataideng_1.png' },
+                { icon: '🏮', title: '青苔路灯',     desc: '照明装饰',           img: 'assets/street_lamp_green_moss.png' },
+                { icon: '🏮', title: '宣纸路灯',     desc: '照明装饰',           img: 'assets/niao_street_lamp_xuan_paper_green.png' },
+                { icon: '📦', title: '古风置物架',   desc: '存放展示物品',       img: 'assets/niao_gufeng_zhiwujia_1.png' },
+                { icon: '🍃', title: '其他装饰品',   desc: '纯装饰，无特殊用途', img: 'assets/niao_gufeng_lianhuajiashan.png' },
+            ];
+
+            // ===== 工具函数 =====
+            function clamp(v, min, max) { return Math.min(Math.max(v, min), max); }
+
+            // 缓动函数
+            var EASES = {
+                'power3.out': function(t) { return 1 - Math.pow(1 - t, 3); },
+                'power2.out': function(t) { return 1 - Math.pow(1 - t, 2); },
+                'expo.out': function(t) { return t === 1 ? 1 : 1 - Math.pow(2, -10 * t); },
+            };
+
+            // ===== 状态 =====
+            var root = document.getElementById('dcRoot');
+            var stage = document.getElementById('dcStage');
+            var dotsContainer = document.getElementById('dcDots');
+            var prevBtn = document.getElementById('dcPrev');
+            var nextBtn = document.getElementById('dcNext');
+
+            var count = ITEMS.length;
+            var pos = 0;          // 当前浮点位置
+            var focus = 0;        // 当前聚焦索引
+            var scale = 1;        // 响应式缩放
+            var cardEls = [];
+            var tintEls = [];
+            var animRAF = null;
+            var animStart = 0;
+            var animFrom = 0;
+            var animTo = 0;
+            var animDuration = 0;
+            var animEase = EASES['power3.out'];
+            var dragState = null;
+            var wheelTimer = null;
+            var autoTimer = null;
+            var isHovered = false;
+            var isFocused = false;
+            var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+            // ===== 构建卡片 DOM =====
+            function buildCards() {
+                stage.innerHTML = '';
+                cardEls = [];
+                tintEls = [];
+
+                for (var i = 0; i < count; i++) {
+                    var item = ITEMS[i];
+                    var card = document.createElement('div');
+                    card.className = 'dc-card';
+                    card.setAttribute('role', 'group');
+                    card.setAttribute('aria-roledescription', 'slide');
+                    card.setAttribute('aria-label', (i + 1) + ' / ' + count);
+                    card.setAttribute('data-index', i);
+
+                    // 图片层
+                    var img = document.createElement('img');
+                    img.className = 'dc-card-img';
+                    img.src = item.img;
+                    img.alt = item.title;
+                    img.draggable = false;
+                    img.onerror = function() {
+                        // 图片加载失败时显示 emoji 占位
+                        this.style.display = 'none';
+                        var parent = this.parentElement;
+                        var content = document.createElement('div');
+                        content.className = 'dc-card-content';
+                        content.innerHTML =
+                            '<div class="dc-card-icon">' + ITEMS[parseInt(parent.dataset.index)].icon + '</div>' +
+                            '<div class="dc-card-title">' + ITEMS[parseInt(parent.dataset.index)].title + '</div>';
+                        parent.insertBefore(content, parent.firstChild);
+                    };
+                    card.appendChild(img);
+
+                    // 遮罩层
+                    var tint = document.createElement('span');
+                    tint.className = 'dc-tint';
+                    card.appendChild(tint);
+                    tintEls.push(tint);
+
+                    // 底部标签
+                    var label = document.createElement('div');
+                    label.className = 'dc-card-label';
+                    label.textContent = item.title;
+                    card.appendChild(label);
+
+                    // 点击事件
+                    (function(idx) {
+                        card.addEventListener('click', function() {
+                            if (dragState && dragState.moved) return;
+                            setFocus(idx, true);
+                        });
+                    })(i);
+
+                    stage.appendChild(card);
+                    cardEls.push(card);
+                }
+            }
+
+            // ===== 构建指示器 =====
+            function buildDots() {
+                dotsContainer.innerHTML = '';
+                for (var i = 0; i < count; i++) {
+                    (function(idx) {
+                        var dot = document.createElement('button');
+                        dot.className = 'dc-dot' + (idx === 0 ? ' is-active' : '');
+                        dot.setAttribute('role', 'tab');
+                        dot.setAttribute('aria-label', '跳转到第 ' + (idx + 1) + ' 张');
+                        dot.addEventListener('click', function() {
+                            setFocus(idx, true);
+                        });
+                        dotsContainer.appendChild(dot);
+                    })(i);
+                }
+            }
+
+            // ===== 布局计算 =====
+            function layout(p) {
+                var dir = CONFIG.tiltDirection === 'left' ? -1 : 1;
+                var n = count;
+                if (!n) return;
+
+                for (var i = 0; i < n; i++) {
+                    var el = cardEls[i];
+                    if (!el) continue;
+
+                    var d = i - p;
+                    if (CONFIG.loop && n > 1) {
+                        d = ((d % n) + n) % n;
+                        if (d > n / 2) d -= n;
+                    }
+
+                    var back = Math.max(0, d);
+                    var az = Math.abs(d);
+                    var shown = az <= CONFIG.visibleCards + 0.5;
+
+                    var tz = -CONFIG.depth * d;
+                    var tx = dir * CONFIG.spread * d;
+                    var ry = dir * CONFIG.tilt * clamp(d, 0, 1);
+
+                    var opacity;
+                    if (d < 0) {
+                        opacity = Math.max(0, 1 + d);
+                    } else {
+                        opacity = 1;
+                    }
+                    if (!shown) opacity = 0;
+
+                    var brightness = Math.max(0.15, 1 - back * CONFIG.falloff);
+                    var blurPx = CONFIG.blur > 0 ? Math.min(CONFIG.blur, (back / Math.max(1, CONFIG.visibleCards)) * CONFIG.blur) : 0;
+                    var zi = Math.round(2000 - d * 20);
+
+                    el.style.transform =
+                        'translate(-50%, -50%)' +
+                        ' scale(' + scale.toFixed(4) + ')' +
+                        ' translateX(' + tx.toFixed(2) + 'px)' +
+                        ' translateZ(' + tz.toFixed(2) + 'px)' +
+                        ' rotateY(' + ry.toFixed(3) + 'deg)';
+                    el.style.opacity = opacity.toFixed(3);
+                    el.style.filter = 'brightness(' + brightness.toFixed(3) + ') blur(' + blurPx.toFixed(2) + 'px)';
+                    el.style.zIndex = String(zi);
+                    el.style.pointerEvents = (shown && opacity > 0.05) ? 'auto' : 'none';
+                    el.setAttribute('aria-hidden', (Math.round(p) === i) ? 'false' : 'true');
+
+                    var tintEl = tintEls[i];
+                    if (tintEl) {
+                        tintEl.style.opacity = clamp(back * CONFIG.falloff * 1.25, 0, 0.86).toFixed(3);
+                    }
+                }
+            }
+
+            // ===== 动画 =====
+            function animateTo(target, animate) {
+                cancelAnimationFrame(animRAF);
+                animFrom = pos;
+                animTo = target;
+                animDuration = (animate && !reducedMotion) ? CONFIG.duration : 0;
+                animStart = performance.now();
+
+                if (animDuration === 0) {
+                    pos = animTo;
+                    layout(pos);
+                    finalizePos();
+                    return;
+                }
+
+                function step(now) {
+                    var elapsed = now - animStart;
+                    var t = clamp(elapsed / animDuration, 0, 1);
+                    var eased = animEase(t);
+                    pos = animFrom + (animTo - animFrom) * eased;
+                    layout(pos);
+                    if (t < 1) {
+                        animRAF = requestAnimationFrame(step);
+                    } else {
+                        pos = animTo;
+                        finalizePos();
+                    }
+                }
+                animRAF = requestAnimationFrame(step);
+            }
+
+            function finalizePos() {
+                var n = count;
+                if (n > 0 && CONFIG.loop) {
+                    pos = ((pos % n) + n) % n;
+                }
+                layout(pos);
+            }
+
+            // ===== 导航 =====
+            function setFocus(rawIndex, animate) {
+                var n = count;
+                if (!n) return;
+                var idx = CONFIG.loop ? ((rawIndex % n) + n) % n : clamp(rawIndex, 0, n - 1);
+                var delta = idx - pos;
+                if (CONFIG.loop && n > 1) {
+                    delta = ((delta % n) + n) % n;
+                    if (delta > n / 2) delta -= n;
+                }
+                animateTo(pos + delta, animate);
+                if (idx !== focus) {
+                    focus = idx;
+                    updateDots();
+                }
+                resetAutoplay();
+            }
+
+            function navigateBy(step) {
+                setFocus(focus + step, true);
+            }
+
+            function updateDots() {
+                var dots = dotsContainer.querySelectorAll('.dc-dot');
+                for (var i = 0; i < dots.length; i++) {
+                    dots[i].classList.toggle('is-active', i === focus);
+                }
+            }
+
+            // ===== 自动播放 =====
+            function startAutoplay() {
+                stopAutoplay();
+                if (!CONFIG.autoplay || reducedMotion || count < 2) return;
+                autoTimer = setInterval(function() {
+                    if (!isHovered && !isFocused) {
+                        navigateBy(1);
+                    }
+                }, Math.max(CONFIG.autoplayDelay, 600));
+            }
+
+            function stopAutoplay() {
+                if (autoTimer) {
+                    clearInterval(autoTimer);
+                    autoTimer = null;
+                }
+            }
+
+            function resetAutoplay() {
+                stopAutoplay();
+                startAutoplay();
+            }
+
+            // ===== 响应式缩放 =====
+            function updateScale() {
+                var w = root.clientWidth;
+                var needed = CONFIG.cardWidth + Math.abs(CONFIG.spread) * 2 + 120;
+                scale = clamp(w / needed, 0.4, 1);
+                layout(pos);
+            }
+
+            // ===== 拖拽 =====
+            function onPointerDown(e) {
+                if (count < 2) return;
+                cancelAnimationFrame(animRAF);
+                dragState = {
+                    x: e.clientX,
+                    startPos: pos,
+                    lastX: e.clientX,
+                    lastT: performance.now(),
+                    v: 0,
+                    moved: false,
+                    id: e.pointerId
+                };
+            }
+
+            function onPointerMove(e) {
+                if (!dragState) return;
+                var stepPx = Math.max(CONFIG.cardWidth * 0.55 * scale, 40);
+                var dx = e.clientX - dragState.x;
+                if (!dragState.moved && Math.abs(dx) > 4) {
+                    dragState.moved = true;
+                    try { root.setPointerCapture(dragState.id); } catch(err) {}
+                }
+                if (!dragState.moved) return;
+                var now = performance.now();
+                var dt = Math.max(now - dragState.lastT, 1);
+                dragState.v = (e.clientX - dragState.lastX) / dt;
+                dragState.lastX = e.clientX;
+                dragState.lastT = now;
+                pos = dragState.startPos - dx / stepPx;
+                layout(pos);
+            }
+
+            function onPointerEnd() {
+                if (!dragState) return;
+                var ds = dragState;
+                dragState = null;
+                if (!ds.moved) return;
+                var stepPx = Math.max(CONFIG.cardWidth * 0.55 * scale, 40);
+                var projected = pos - (ds.v * 180) / stepPx;
+                setFocus(Math.round(projected), true);
+            }
+
+            // ===== 滚轮 =====
+            function onWheel(e) {
+                if (count < 2) return;
+                e.preventDefault();
+                cancelAnimationFrame(animRAF);
+                var raw = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
+                var delta = e.deltaMode === 1 ? raw * 24 : raw;
+                var step = clamp(delta / (CONFIG.cardWidth * 0.9), -0.6, 0.6);
+                pos += step;
+                layout(pos);
+                if (wheelTimer) clearTimeout(wheelTimer);
+                wheelTimer = setTimeout(function() {
+                    setFocus(Math.round(pos), true);
+                }, 130);
+            }
+
+            // ===== 键盘 =====
+            function onKeyDown(e) {
+                if (e.key === 'ArrowLeft') {
+                    e.preventDefault();
+                    navigateBy(-1);
+                } else if (e.key === 'ArrowRight') {
+                    e.preventDefault();
+                    navigateBy(1);
+                }
+            }
+
+            // ===== 初始化 =====
+            function init() {
+                buildCards();
+                buildDots();
+                updateScale();
+                layout(0);
+
+                // 事件绑定
+                root.addEventListener('pointerdown', onPointerDown);
+                root.addEventListener('pointermove', onPointerMove);
+                root.addEventListener('pointerup', onPointerEnd);
+                root.addEventListener('pointercancel', onPointerEnd);
+                root.addEventListener('wheel', onWheel, { passive: false });
+                root.addEventListener('keydown', onKeyDown);
+                root.addEventListener('mouseenter', function() { isHovered = true; });
+                root.addEventListener('mouseleave', function() { isHovered = false; });
+                root.addEventListener('focusin', function() { isFocused = true; });
+                root.addEventListener('focusout', function() { isFocused = false; });
+
+                prevBtn.addEventListener('click', function() { navigateBy(-1); });
+                nextBtn.addEventListener('click', function() { navigateBy(1); });
+
+                // 响应式
+                if (window.ResizeObserver) {
+                    var ro = new ResizeObserver(function() { updateScale(); });
+                    ro.observe(root);
+                } else {
+                    window.addEventListener('resize', updateScale);
+                }
+
+                // 自动播放
+                startAutoplay();
+            }
+
+            // 启动
+            init();
+        })();
+    </script>
+    <script src="search.js?v=20260807"></script>
+    <script src="effects.js?v=20260807_4"></script>
+    <script src="palace-lamp.js?v=20260807"></script>
+</body>
+</html>
